@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+	*{margin:0;padding:0;}
+	div{width: 100px;height: 100px;background: skyblue;text-align: center;line-height: 100px;color: #000;
+		margin-bottom: 50px;font-size: 50px;}
+  </style>
+</head>
+<body>
+	<div>1</div>
+	<div>2</div>
+	<div>3</div>
+	<div>4</div>
+	<div>5</div>
+    <script>
+      var divs = document.getElementsByTagName("div");
+     
+      for(var i=0; i<divs.length; i++){
+      	divs[i].onmouseover = function(){
+      		one(this,{width:500,height:300});
+      	}
+
+      	divs[i].onmouseout = function(){
+      		one(this,{width:100,height:100});
+      	}
+      }
+
+      function one(node,obj,fn){
+        var flag = true;
+        var speed;
+        var timer = null;
+      	clearInterval( node.timer )
+      	node.timer = setInterval(function(){
+      		var num;
+          for(var style in obj){
+            if( style == "opacity" ){
+              num = parseInt(parseFloat(getStyle(node,style))*100)
+            }
+            else{
+              num = parseInt(getStyle(node,style));
+            }
+            speed = (obj[style]-num)/4;
+            speed = obj[style]-num > 0 ? Math.ceil(speed) : Math.floor(speed);
+            num+=speed;
+
+            if( style == "opacity" ){
+              node.style.opacity = num / 100;
+              node.style.filter = "alpha(opacity:"+num+")"
+            }
+            else{
+              node.style[style]=num + "px"
+            }
+
+            if( num != obj[style] ){
+              flag = false
+            }
+
+            if( flag ){
+              clearInterval( node.timer )
+              if(fn){
+                fn()
+              }
+            }  
+          }
+      	},50)
+      }
+
+      function getStyle(node,style){
+      	if(node.currentStyle){
+      		return node.currentStyle[style]
+      	}
+      	else{
+      		return getComputedStyle(node,null)[style]
+      	}
+      }
+    </script>
+</body>
+</html>

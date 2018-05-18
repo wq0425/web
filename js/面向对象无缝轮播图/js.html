@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;}
+		li{list-style: none;}
+		#box{position: relative;width: 1000px;height: 600px;margin:100px auto;overflow: hidden;}
+		#left,#right{position: absolute;cursor: pointer;z-index: 999;}
+		#left:hover,#right:hover{background: rgba(0,0,0,.5);}
+		#left{top: 47%;left: 20px;}
+		#right{top: 47%;right: 20px;}
+		#ul{width: 7000px;position: absolute;}
+		#ul li img{float: left;width: 1000px;height: 600px;}
+		#ul img{width: 1000px;height: 600px;}
+		#ol{position: absolute;bottom: 10px;right: 10px;}
+		#ol li{float: left;width: 50px;height: 50px;background: #fff;border-radius: 50%;margin-right: 10px;
+			text-align: center;line-height: 50px;font-size: 30px;cursor: pointer;color: #000;}
+		#ol li.bg{background: #000;color:#fff;}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<script src="动画.js"></script>
+	<script>
+		function Tab(obj){
+			this.obj = obj
+			this.box = document.getElementById(this.obj.parent)
+			this.arr = ["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","1.jpg"]
+			this.ok()
+		}
+
+		Tab.prototype = {
+			constructor:Tab,
+			init:function(){
+				this.left = document.createElement("div")
+				this.left.innerHTML = "<div id='left'><img src='left.png'></div>"
+				this.box.appendChild(this.left)
+				this.right = document.createElement("div")
+				this.right.innerHTML = "<div id='right'><img src='right.png'></div>"
+				this.box.appendChild(this.right)
+				this.lClick()
+				this.ul = document.createElement("ul")
+				this.ul.id = "ul"
+				this.str = ''
+				for(var i=0; i<this.arr.length; i++){
+					this.str += `<li><img src="${this.arr[i]}" alt=""></li>`
+				}
+				this.ul.innerHTML = this.str;
+				this.box.appendChild(this.ul)
+				this.ulli = this.ul.getElementsByTagName("li")
+				this.ol = document.createElement("ol")
+				this.ol.id = "ol"
+				this.str1 = ''
+				for(var i=0; i<this.arr.length - 1; i++){
+					this.str1 += `<li>${i+1}</li>`
+				}
+				this.ol.innerHTML = this.str1;
+				this.box.appendChild(this.ol)
+				this.olli = this.ol.getElementsByTagName("li")
+				this.olli[0].className = "bg"
+				this.olMouse()
+				this.num = 0;
+				this.count = 0;
+				this.timer = null;
+			},
+			ok:function(){
+				this.init()
+				this.lClick()
+				this.olMouse()
+				this.autoplay()
+				this.mouseOverOut()
+			},
+			lClick:function(){
+				var that = this;
+				this.right.onclick = function(){
+					that.num++;
+					that.count++;
+					if( that.num > that.ulli.length - 1 ){
+						that.num = 1;
+						that.ul.style.left = 0;
+					}
+					if( that.count > that.olli.length - 1){
+						that.count = 0;
+					}
+					that.change(that.count,that.num)
+				}
+				this.left.onclick = function(){
+					that.num--;
+					that.count--;
+					if( that.num < 0 ){
+						that.num = that.ulli.length - 2 ;
+						that.ul.style.left = -(that.ulli.length -1) * 1000 + "px";
+					}
+					if( that.count < 0 ){
+						that.count = that.olli.length - 1 ;
+					}
+					that.change(that.count,that.num)
+				}
+			},
+			autoplay:function(){
+				var that = this
+				this.timer = setInterval(function(){
+					that.right.onclick()
+				},1000)
+			},
+			mouseOverOut:function(){
+				var that = this
+				this.box.onmouseover = function(){
+					clearInterval( that.timer )
+				}
+				this.box.onmouseout = function(){
+					that.autoplay()
+				}
+			},
+			change:function(count,num){
+				one(this.ul,{left:-num*1000})
+				for(var i=0; i<this.olli.length; i++){
+					this.olli[i].className = ""
+				}
+				this.olli[count].className = "bg"
+				this.count=count
+				this.num=num
+			},
+			olMouse:function(){
+				var that = this
+				for(let i=0; i<this.olli.length; i++){
+					this.olli[i].onmouseover = function(){
+						that.change(i,i)
+					}
+				}
+			}
+		}
+		var a = new Tab({
+			parent:"box"
+		})
+	</script>
+</body>
+</html>

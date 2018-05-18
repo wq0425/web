@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width,maximum-scale=1.0,minimum-scale=1.0,initial-scale=1.0,user-scalable=no">
+	<meta name="format-detection" content="telephone=no,email=no,adress=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1.0">
+	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="icon/iconfont.css"/>
+	<link rel="stylesheet" href="swiper-3.4.2.min.css">
+	<script>
+		document.documentElement.style.fontSize = window.innerWidth / 375 * 50 + "px"
+	</script>
+	<style>
+		*{}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<header>
+			<span>微信</span>
+			<div class="right">
+				<a href="#"><i class="iconfont">&#xe729;</i></a>
+				<a href="#"><i class="iconfont">&#xe6fb;</i></a>
+			</div>
+		</header>
+		<section>
+			<div class="main">
+				<div class="swiper-wrapper">
+					<dl>
+						<dt>
+							<img src="img/3.gif" alt="">
+						</dt>
+						<dd>
+							<p><b>萧哥</b><strong>昨天</strong></p>
+							<span>对啊，我就是萧哥</span>
+						</dd>
+					</dl>
+					<div class="quxiao">
+						标为未读
+					</div>
+					<div class="close">
+						删除
+					</div>
+				</div>
+				<div class="swiper-wrapper">
+					<dl>
+						<dt>
+							<img src="img/3.gif" alt="">
+						</dt>
+						<dd>
+							<p><b>萧哥</b><strong>昨天</strong></p>
+							<span>对啊，我就是萧哥</span>
+						</dd>
+					</dl>
+					<div class="quxiao">
+						标为未读
+					</div>
+					<div class="close">
+						删除
+					</div>
+				</div><div class="swiper-wrapper">
+					<dl>
+						<dt>
+							<img src="img/3.gif" alt="">
+						</dt>
+						<dd>
+							<p><b>萧哥</b><strong>昨天</strong></p>
+							<span>对啊，我就是萧哥</span>
+						</dd>
+					</dl>
+					<div class="quxiao">
+						标为未读
+					</div>
+					<div class="close">
+						删除
+					</div>
+				</div><div class="swiper-wrapper">
+					<dl>
+						<dt>
+							<img src="img/3.gif" alt="">
+						</dt>
+						<dd>
+							<p><b>萧哥</b><strong>昨天</strong></p>
+							<span>对啊，我就是萧哥</span>
+						</dd>
+					</dl>
+					<div class="quxiao">
+						标为未读
+					</div>
+					<div class="close">
+						删除
+					</div>
+				</div><div class="swiper-wrapper">
+					<dl>
+						<dt>
+							<img src="img/3.gif" alt="">
+						</dt>
+						<dd>
+							<p><b>萧哥</b><strong>昨天</strong></p>
+							<span>对啊，我就是萧哥</span>
+						</dd>
+					</dl>
+					<div class="quxiao">
+						标为未读
+					</div>
+					<div class="close">
+						删除
+					</div>
+				</div><div class="swiper-wrapper">
+					<dl>
+						<dt>
+							<img src="img/3.gif" alt="">
+						</dt>
+						<dd>
+							<p><b>萧哥</b><strong>昨天</strong></p>
+							<span>对啊，我就是萧哥</span>
+						</dd>
+					</dl>
+					<div class="quxiao">
+						标为未读
+					</div>
+					<div class="close">
+						删除
+					</div>
+				</div><div class="swiper-wrapper">
+					<dl>
+						<dt>
+							<img src="img/3.gif" alt="">
+						</dt>
+						<dd>
+							<p><b>萧哥</b><strong>昨天</strong></p>
+							<span>对啊，我就是萧哥</span>
+						</dd>
+					</dl>
+					<div class="quxiao">
+						标为未读
+					</div>
+					<div class="close">
+						删除
+					</div>
+				</div>
+			</div>
+		</section>
+		<footer>
+			<a href="#" class="bg"><i class="iconfont">&#xe60d;</i><span>微信</span></a>
+			<a href="#"><i class="iconfont">&#xe716;</i><span>通讯录</span></a>
+			<a href="#"><i class="iconfont">&#xe715;</i><span>发现</span></a>
+			<a href="#"><i class="iconfont">&#xe607;</i><span>我</span></a>
+		</footer>
+	</div>
+	<script src="swiper-3.4.2.min.js"></script>
+	<script>
+		var aa = document.querySelector("footer").getElementsByTagName("a")
+		
+		var close = document.querySelectorAll(".close")
+		
+
+		for(var i=0; i<aa.length; i++){
+			aa[i].onclick = function(){
+				for(var j=0; j<aa.length; j++){
+					aa[j].classList.remove("bg")
+				}
+				this.classList.add('bg')
+			}
+		}
+		var dl = document.querySelector(".main").getElementsByTagName("dl")
+		for(let i=0; i<close.length; i++){
+			close[i].onclick = function(){
+				wrapper[i].style.display = "none"
+			}
+		}
+		
+		var qx = document.querySelectorAll(".quxiao")
+		var wrapper = document.querySelectorAll(".swiper-wrapper")
+		
+		var w = document.querySelector("section").offsetWidth - qx[0].offsetWidth * 2
+		for(let i=0; i<dl.length; i++){
+			var x;
+			dl[i].addEventListener("touchstart",function(){
+				x=0;
+			})
+			dl[i].addEventListener("touchmove",function(e){
+				var t = e.touches[0]
+				x = t.clientX;
+				if( x < w ){
+					hid()
+					this.style.transform = "translate(-40%)"
+					close[i].style.display = "block"
+					qx[i].style.visibility = "visible"
+				}
+				else{
+					hid()
+				}
+			})
+		}
+
+		function hid(){
+			for(var j=0; j<close.length; j++){
+				close[j].style.display = "none"
+				qx[j].style.visibility = "hidden"
+				dl[j].style.transform = "translate(0)"
+			}
+		}
+	</script>
+</body>
+</html>

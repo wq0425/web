@@ -1,0 +1,1149 @@
+ 移动端 
+
+尺寸
+
+iphone4    320* 480  宽 *高
+iphone5    320*568
+iphone6     375*667
+ipohne6plus  414*736
+==========================================================================
+
+1。 打开页面  2. F12(检查)     右边手机标志  点击！！！
+==========================================================================
+ viewport    视窗窗口   可视窗口！！       宽度很大    980 以上！！ layout  比手机屏幕要宽
+
+
+meta  name="viewport" 视窗窗口 可视窗口    
+content   =
+width=device-width   视窗窗口的宽度等于设备的宽度                              device（设备的意思）
+width=320;  宽度可以给固定数值
+height=device-height 视窗窗口的高度等于设备的高度！！！！！这个不用！！!!!!!!
+
+initial-scale;初始缩放比例！！     1.0；
+maximum-scale=1.0, 最大缩放比例1.0；
+minimum-scale=1.0   最小缩放比例   1.0；
+user-scalable=no 禁止用户缩放  默认值yes       no  禁止用户缩放！！！
+============================================================================
+format-detection   格式检测！
+
+meta  name= “format-detection”  content=“telephone=no，emaill=no”   禁止拨打电话   禁止发送邮件
+addres=no     禁止跳转地图！！！！！
+============================================================================
+<meta http-equiv="X-UA-Compatible" content="ie=Edge,chrome=1.0">
+ie最高版本执行；
+
+==============================================================================
+1.工具    ->  新代码片段
+2.开始删除内容   "Hello, ${1:this} is a ${2:snippet}."      删除第三行    从hello 到.
+3.第三行放入你的代码片段；
+4.注意文件路径别动   命名    英文      保存
+5.调用   ctrl+shift+p  三键合一！
+
+完成
+======================================================================================
+-webkit-user-select：none；  禁止用户选择文本！！！  ie10 以下不支持   谷歌火狐支持
+======================================================================================
+-webkit-touch-callout：none； 禁止弹出菜单！！！！
+======================================================================================
+取消高亮！！
+-webkit-tap-highlight-color：rgba（0,0,0,0）;注意  在ios  按钮点击的时候有默认的黑色背景  在Android下   有蓝色的边框！！
+======================================================================================
+appearance:none; 取消表单的默认样式
+
+input ,a{
+appearance：none  取消表单默认样式！！！
+}
+=======================================================================================
+
+P:first-line{} 选择第一行文字
+p：first-letter{} 选择第一个文字
+=======================================================================================
+text-transform:uppercase;　全部大写
+text-transform:lowercase;  全部小写
+text-transform:capitalize;  首字母大写;
+
+=======================================================================================
+
++   相邻兄弟选择器
+~ 兄弟选择器
+>  子元素选择器
+=======================================================================================
+p:nth-child(1){} 选择的是一个元素   从第一个开始！！！
+p:nth-child(2){} 选择的是二个元素 
+p:nth-child(n){} 选择的是第n个元素 
+p:nth-child(2n){} 选择的是2的倍数
+p:nth-child(2n+1){} 选择的是 基数
+p:first-child{}选择的是第一个元素
+p：last-child（）{}选择的是最后一个元素
+P：nth-last-child（1）{} 倒数第几个！！！
+
+
+
+p：nth-of-type（）{}选择的是同类型的
+========================================================================================
+:not()   除了第几个！！！！！！！！！！！
+
+:not(:nth-child(2)){}  除了第二个！！！
+========================================================================================
+:root{}   根元素选择器
+========================================================================================
+[]  属性选择器；
+
+input[type]{};
+input{type="button"}{};
+input{type^="button"}{};  起始位置  ！！！
+input{type$="button"}{};  结束位置！！！
+input{type*="button"}{};   包含选择器  ！！
+=======================================================================================
+font-szie：medium===  16px
+=======================================================================================
+text-size-adjust: 100%    去除字体毛边！！！   
+
+======================================================================================
+==============================================================
+
+rgba（0,0,0,0）    a   透明度  只有背景  a  0   -   1       0  完全透明   1完全不透明  
+
+opacity    透明度    继承   值   0 - 1    
+
+filter：alpha（opacity=50）        0- 100   0 完全透明  100完全不透明       解决 ie  低版浏览器的透明度兼容性问题！！！
+===============================================================
+改变  提示文字的颜色     placeholder！
+
+
+ 注意 双冒号！！！！！
+input::-webkit-input-placeholder{
+	color:blue;
+}
+
+CSS 预处理器
+	是一种语言用来为 CSS 增加一些编程的的特性，不用考虑浏览器的兼容性问题，例如你可以在 CSS 中使用变量、
+简单的程序逻辑、函数等等在编程语言中的一些基本技巧，可以使CSS 更加简洁，适应性更强，代码更直观等好处。
+
+Sass  
+
+	 是一门高于 CSS 的元语言，它能用来清晰地、结构化地描述文件样式，有着比普通 CSS 更加强大的功能。
+Sass 能够提供更简洁、更优雅的语法，同时提供多种功能来创建可维护和管理的样式表。  基于ruby  计算机语言
+
+
+sass  注意千万别有中文目录！！！
+文件的后缀名      .sass     .scss 两种
+
+
+=========================
+.sass  
+
+
+
+.box
+ width:200px
+height:200px
+
+
+==============================================
+
+.scss
+
+.box{
+width:200px;
+height:200px
+
+}
+==============================================
+scss    声明文档编码格式
+
+@charset "utf-8";  一个  空格！！！！;     声明文档编码格式
+
+==============================================
+html   注释   <!--  这放注释内容   -->
+css   注释   /* */
+==============================================
+scss  也有注释
+
+
+//   单行注释     编译后不保留！！！！
+
+/*  */     多行注释  编译后保留！！！！
+==============================================
+
+引入外部文件
+@import url("reset.css");  单引号  双引号 都可以！！！     url（不加引号也可以！！）
+@import  "reset.css";  
+==============================================
+
+输出方式
+1.嵌套输出方式    nested
+
+2.展开输出方式 expanded（默认样式）  ！！！！！！！！！！
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+3.紧凑输出方式   compact
+nav ul { margin: 0; padding: 0; list-style: none; }
+4.压缩输出方式    compressed     压缩干掉所有空格   注释！！！！！！
+nav ul{margin:0;padding:0;list-style:none}nav li{
+display:inline-block}nav a{display:block;
+padding:6px 12px;text-decoration:none}
+============================================================================
+
+$  声明变量;   变量的名字不能以数字开头！  英文字母开头    也不能是中文！！！
+
+$变量的名字：变量的值！！     属性和属性值之间用冒号；
+
+$aa:red !default;          !default;  默认值   优先级很低！！！
+
+
+变量分为两种 
+
+全局变量    放在所有的外面！！
+
+局部变量！   没有意义   局部变量是放在函数内部的！！
+
+
+变量可以多次调用    
+
+$w:200px;
+====================================================================================
+
+运算符
+
++ 加法  -   减法  /  除法   * 乘法   %  取模（取余）    （）  
+
+有括号先算 括号里面的;
+
+
+加减正常！！！
+乘法   两个其中一个只能有单位！！！；
+
+除法   两个都可以有单位 
+      如果其中一个没有单位   一定是第二个！！  
+
+
+=========================
+类型  
+
+数字   number     123456;
+
+字符串 string     "123456asd";
+
+布尔类型   boolean    true  false；   真  假;
+
+
+
+
+
+
+=======================================================================================
+选择器 嵌套！！！
+属性嵌套！！！
+
+===================
+
+选择器 嵌套！！！  选择器里面嵌套选择器！！！！！！！！
+
+css 写法
+
+.box p span b{  font-size:60px;}
+
+ scss  写法！！
+
+.box{
+	p{
+		span{
+			b{
+				font-size：60px;
+			}
+		}
+
+	}
+}
+
+============================================================================================
+
+引用父级    &：   父元素选择器！！！！   
+============================================================================================
+
+属性嵌套！！
+
+
+css 写法
+
+.box {
+  background-position: center;
+  background-color: yellow;
+  background-image: url(move.jpg); 
+}
+
+scss  写法
+
+ .box{
+ 	background: {
+ 		position: center;
+ 		color:yellow;
+ 		image:url(move.jpg);
+ 	}
+ }
+
+===============================================================================================
+
+混合宏！！！ 解决代码重复  多次调用  传参
+
+
+
+@mixin  声明混合宏！！！！
+
+@include  调用混合宏！！！
+
+
+名字不能为数字   也不能汉字
+
+
+没有参数的调用
+
+@mixin aa{
+	color:red;
+	background: red;
+}
+.box {
+	@include aa;
+}
+
+
+有参数的调用
+@mixin aa($a,$b){
+	color:$a;
+	background: $b;
+}
+.box1{
+	@include  aa(red,blue)
+}
+
+有默认值的混合宏       默认值 可以省略  如果默认值省略   必须传递参数！！！ 
+
+@mixin  bb（$a:pink,$b:blue）{
+	color:$a;
+	background:$b;
+}
+
+.box{
+	@include aa(purple,orange)
+}
+
+
+
+
+============================================================
+2017. 3 .10
+
+============================================================
+
+ 颜色  计算
+
+$a:#000000;
+$b:#111111;
+.box{
+	color：$a+$b;
+}
+============================================================
+ 
+dashed   虚线  solid 实线     dotted 点线    double 双线
+============================================================
+继承  
+
+
+ 共有两种
+
+1.  继承类   或id  或class  （编译！！）
+2. 继承选择器占位符   %qq;  %+名字   只能是字母开头       不能用汉字+特殊字符！（声明的%qq  不编译！！）
+
+
+
+================================================================
+@extend    继承    想继承谁 加谁的标签 或 id  或class  就  ok！！
+
+.class{
+	width: 200px;
+}
+.box{
+	@extend .class;  
+}
+===============================================================
+%public{
+	width：200px;
+}
+
+.box{
+	@extend  %public;
+}
+========================================================================================
+
+@if  判断
+
+
+一种条件
+=================================================
+@if  条件成立{
+	执行花括号里面的语句！！
+}
+
+@if 2==2{
+	执行语句 ！！ 
+
+}
+===================================================
+程序从上往下执行！ 如果一个条件为真  执行花括号里面的语句 程序停止运行
+$num:5;
+
+@if  $num<30{ 
+	.box{width: 10px;}  
+}@else if $num==10{
+	.box{width: 20px;}
+}@else if  $num<10{
+	.box{width: 30px}
+}@else {
+	.box{width: 100000px;}
+}
+
+===========================================================
+插值  在哪都好使    一般用来插在字符串之中！
+ #{} 
+
+$w200:200;
+$bg:background;
+.box{
+	font-size: #{$w200}px;
+	#{$bg}:red;
+}
+
+==========================================================
+
+@for  初始变量  from（从）  1 to（到 end -1）  10{
+	
+}
+@for  初始变量  from（从）  1 through（到）  10{
+	
+}
+
+to  到  最后一位 -1；
+through  到最后一位
+
+
+@for  $num  from  1 to  10{
+.box-#{$num}{
+	font-size:#{$num}px;
+}
+
+}
+@for  $num  from  1 through  10{
+.box-#{$num}{
+	font-size:#{$num}px;
+}
+
+}
+
+=============================================================
+rem  布局！
+
+1.  量页面的宽度！！！    750
+ 
+2     750/320*20  ===  46.875   
+3.  开始写页面
+
+==============================================================
+
+循环 ！！   
+
+
+两种  1  @for    条件固定的时候  用@for 循环;
+     2  @while   条件不固定的时候   用@while循环
+
+===============================================================
+@while   循环
+
+$num:1;
+@while $num<100{
+	.box-#{$num}{width:200px;}
+	$num:$num+1;
+	
+}
+===============================================================
+
+autofocus="autofocus"  自动获得焦点！！！！
+
+
+================================================================、
+变形！！！！  ie  8 及以下不支持！！！
+
+transform！！  属性 
+
+transform:translate();  translate  平移！！！ 偏移！！！ 位移
+
+translate（600px）  一个值   默认是 X轴方向 水平方向
+translate(200px,400px);   两个值     第一个是水平偏移X  第二个值代表的是垂直方向偏移   Y  
+translateZ(-200px);  Z 前后方向！！  正值往前走  负值后走;
+translateX(-200px); 	x轴  水平方向
+translateY(-200px); 	Y轴  垂直方向
+translate3d（200px,200px,200px）   第一个值 是 水平方向  第二个值是垂直方向 第三个值 是Z轴方向；
+ 
+
+单位  px  rem  %  em  都行
+
+
+
+================================================================
+transform: rotate(60deg);   旋转   默认是 Z轴;    正值是顺时针旋转！！！  单位只能给deg！！！！！
+transform: rotatex(60deg);   x轴
+transform: rotateY(60deg);   Y轴
+transform: rotateZ(60deg);   z轴
+transform：rotate3d(30,30,30,60deg)  3d旋转     前三个值 x,y,z 的方向  第四个值 是旋转的角度
+=======================================================================
+transform：scale（1.0）  缩放     一个值 默认  x轴 y轴    缩放  1.0倍    大于1.0  放大    小于1.0 缩小；
+transform: scale(1.0,2.0)    两个值 第一个值   x轴   第二个值  y轴 
+transform：scaleX(1.0)  只有x 轴缩放；
+transform：scaleY(1.0)  只有Y 轴缩放；
+transform：scaleZ(1.0)  只有Z 轴缩放；
+transform：scale3d（1.0,1.0,1.0）代表的是 x轴   y轴  z轴！！！！
+====================================================================
+transform：skew（60deg） 倾斜！！  默认值  X 轴
+transform：skew（60deg，60deg）  第一个值 x轴 第二个值是 y轴！！！！！ 
+transform：skewX（60deg）  默认x轴；
+transform：skewY（60deg）  默认Y轴；
+ 
+skew  没有z 轴！！！！
+也没有3d！！！！
+==============================================================
+平移 translate3d（）　  3个值
+缩放 scale3d（）   3个值
+旋转  rotate3d（）　 4个值
+
+倾斜 skew 没有3d   没有z轴！！！ 
+=================================================================
+
+
+
+
+=============================================================
+transform-style: preserve-3d;  开启3d  透视
+transform:perspective(800px)  设置透视的距离
+
+==============================================================
+
+元素位置放生改变！！！   
+1. margin
+2.left
+3.position:
+
+水平方向 正值 往  右  负值 往左
+
+垂直方向    正值往下走  负值往上走；
+
+================================================================
+
+动画 ！！！
+1.    触发执行的简单过渡动画   ；      点击的时候  划过的时候！！
+
+transition:   必须要写一个属性值！！！ 必须要写时间！！！！！！！！  复合属性
+transition-property：过渡属性！！！
+transition-property: width,height,background,font-size,border-radius,line-height; .....   （all 过渡全部   过渡所有属性 ！！！  默认值！！！）
+transition-duration：  过渡时间    默认值  0s     1s=1000ms  单位可以给  s秒    ms  毫秒！！！
+transition-timing-function：  过渡类型    默认值 ease（慢快慢）;  linear (线性  匀速)；ease-in（越来越快）  ease-out（越来越慢）  ease-in-out（以慢开始  以慢结束）
+transition-delay：延迟时间     默认值是  0s；  1s=1000ms  单位可以给  s秒    ms  毫秒！！！
+
+
+属性值位置可以调整      注意 第一个写的一定是 过渡时间   第二个是延迟时间！！！
+=================================================================
+
+时间越短速度越快
+时间越长 速度越慢 
+================================================================
+
+ 改变坐标原点位置！！！！！！
+transform-origin：  改变坐标原点的位置  默认值 center  center  50%   50%    先水平 后垂直   
+可以给的值  left  right  center  top  bottom   100px   100%
+================================================================
+
+自己动的动画 不需要触发    自执行动画！！  animation
+
+
+animation ：复合属性 必须写两个属性   一个是动画的名字  另外一个是动画执行的时间！！！
+
+
+animation-name：name   动画的名字！！！！
+animation-duration：0s  动画执行的时间 默认值 0s    1s=1000ms ;
+animation-iteration-count:动画执行的次数！！  默认值1 次   无限次数 infinite;
+animation-direction:动画执行的方向 默认值  normal  正常 reverse  反向执行  alternate 先正向后反向交替执行     alternate-reverse：先反向后正向交替执行
+animation-delay动画延迟执行时间 默认值 0s;
+animation-timing-function:动画执行的类型； 默认值  ease 慢快慢    ease-in越来越快     ease-out  越来越慢  ease-in-out  以慢开始以慢结束   linear  线性
+animation-fill-mode: none  设置动画开始或结束的状态   (在哪停下来)  forwards 在结尾处停下来   backwards 在开始位置停下来  both开始或结束的位置！！
+
+animation  配合  @keyframes 使用       @keyframes  放在style 里面！！！
+
+@keyframes   定义 动画！！！！！！！
+
+
+@keyframes   动画的名字{
+	from{} == 从0%开始    ===   0%{}
+	to{} ==  到 100%结束   ===   100%{}
+
+}
+=========================================================================
+
+animate.css  这是css的一个库    放css 的一个仓库！！ 
+哪些 css？  定义了一些 动画！
+它预设了抖动（shake）、闪烁（flash）、弹跳（bounce）、翻转（flip）、旋转（rotateIn/rotateOut）、淡入淡出（fadeIn/fadeOut）
+ 
+咱们用的时候 直接加上class 类名就行了！！！！
+1.link 引入css 动画库   animate.css
+============================================================================
+ 弹性盒          移动端！！！   低版本ie 浏览器不支持！！
+
+老弹性盒 ！。
+ display:-webkit-box;
+-webkit-box-orient:vertical;  
+
+新弹性盒   
+不能用浮动，  vertical-align 也不好使  清除浮动也不好使！！！！！
+
+display:flex   新弹性盒  块级元素 行内元素都可以使用    加给父元素！！！
+行内元素使用的弹性盒
+display：inline-flex; 
+
+兼容性写法
+display：-webkit-flex；
+display：-moz-flex；
+
+   
+display:flex   ;  使行内元素支持宽高；  
+
+弹性盒  分为两个方向
+1.主轴方向
+2。侧轴方向（垂直轴方向）
+====================================================================
+设置主轴方向
+flex-direction: row （默认值是 水平方向）   设置主轴的方向  。给谁设置谁就是主轴！ column（垂直轴）
+row水平方向是主轴   正序排列  row-reverse  倒叙排列  column 垂直方向是主轴 正序排列    column-reverse   倒叙排列
+
+======================================================================
+justify-content: 设置或检索弹性盒子元素在主轴（横轴）方向上的对齐方式。 ！！！！
+
+
+
+justify-content:   设置主轴的对齐方式   子元素排列的的方向   加给父元素的！！！
+  flex-start（默认值） 左对齐  flex-end（右对齐）
+  center（居中）space-around项目两端间
+距一样！！！    弹性盒子元素会平均地分布在行里，两端保留子元素与子元素之间间距大小的一半。
+space-between;两端对齐；中间的项目平分剩余位置；
+========================================================================================
+justify-content:子元素在主轴方向移动
+
+align-items:  子元素在侧轴方向移动
+
+================================================================================
+align-items:stretch （拉伸  默认值）侧轴的对齐方式！！！   子元素排列的的方向  加给父元素的！！！ 
+
+flex-start  起始位置对齐  flex-end  结束位置对齐 center   居中对齐   baseline  文字基线底部对齐； stretch（拉伸   默认值！！！！！）如果有宽高不拉伸
+
+=====================================================================================
+flex-grow   平分父级剩余空间！！！！！！  默认值为 0；
+======================================================================================
+rem  相对于html   
+em 相当于 父元素！！
+
+
+=======================================================================================
+弹性盒 首尾  固定 
+
+1.  .box{display:flex;flex-direction:column}
+2. header{width:100%;height:.4rem;}
+3.section{width:100%;flex-grow：1}   section  除了header 的高度和footer 的高度  全占了！！！！
+4.footer{width:100%;height:.4rem}
+=======================================================================================
+全局
+*{margin：0；padding：0；font-size：.14rem；box-sizing：border-box}
+html{font-size：625%}
+html,body,.box{width:100%;height:100%;}
+
+
+
+
+
+================================================
+@font-face{ }  自定义字体
+@font-face{
+	font-family:"iconfont";  字体的名称
+	src: url('fonts/hakuyoxingshu7000.ttf'); 
+	
+}
+===========================================================
+src： 字体在服务器上的某个地方
+url在服务器上的具体路径！
+==========================================================
+
+
+format('embedded-opentype')  指定字体的格式！！！！！
+src：url（font...........）;
+src：url（font...........）;
+
+src:url(font......),url(font......),url(font/sdad.fft),url(font/asdasd.ttf) format(指定字体的格式);
+icon图标：
+可以导入
+删除
+选择
+编辑
+
+
+
+字体格式
+ttf mac
+eot ie
+woff web
+svg 谷歌和苹果
+
+
+================================================================
+
+弹性盒收缩比例！   加给子元素！！！！！
+flex-shrink：1；  如果 子元素的宽度超过父元素的宽度 默认向内收缩！！    默认值是1；
+================================================================
+
+弹性的基准比例；   加给子元素！！！！！
+flex-basis：默认值是  auto;;  单位可以是%   px rem  em;
+=================================================================
+设置弹性是否换行！！  子元素超出父元素宽度的时候！！！！;  加给父元素
+flex-wrap:nowrap;  nowrap（默认值）  不换行！！！    wrap（换行） wrap-reverse； 反向换行！！！！！
+=================================================================
+order：子元素显示的顺序!!  默认值   0；    加给子元素;   
+数值越小越靠前     。
+-9   -8  -7  -6  -5  -4  -3  -2  -1  0  1  2  3  4  5  6  7  8  9  10   ....
+========================================================================
+align-self ：定义flex子项单独在侧轴（纵轴）方向上的对齐方式。   默认值 auto；  加给子元素！！！
+flex-start  起始位置 flex-end  结束位置  center   居中   basline  文字底部基线对齐；  stretch  拉伸；
+=======================================================================
+flex：复合属性   flex-grow   flex-shrink flex-basis      加给父级！！！！
+flex：   0  1  auto   默认值！！！！！！！！
+
+flex-grow： 平分父级剩余空间                默认值0；
+flex-shrink;   设置弹性盒的收缩比例        默认值1；
+flex-basis：  设置弹性盒的基准比例        默认值是 auto；
+===========================================================================
+
+以后分份  flex：1   ；  flex：2  flex：3； flex：4
+=============================================================================
+transfrom   变形
+translate（600px） 平移  默认值  X轴
+translate（600px，800px）  默认值  水平X 和 垂直Y
+translate3d（600px，400px，800px） x轴  y轴 z 轴   3d  平移
+translateX（600px）默认x轴方向
+translateY（700px）默认值   y轴方向
+translateZ（400px）默认z 轴   前后方向
+=============================================================================
+rotate（600deg）旋转 默认值z 轴
+rotateX（400deg）  默认x轴旋转
+roatateY（500deg）  默认值Y轴
+rotateZ（700deg）默认Z轴
+rotate3d（20,30.30,60deg）3d旋转   四个值
+=================================================================================
+skew（60deg） 倾斜     默认值 x轴  倾斜
+skew（60deg，60deg）  默认值水平和垂直 倾斜
+skewX（60deg）  默认值x轴倾斜  
+skewY（60deg） 默认Y轴倾斜
+没有z轴和3d
+==================================================================================
+scale（1.0） 缩放    大于  1.0 放大  默认水平和垂直方向
+scaleX(1.0)默认x轴
+scaleY（1.0）默认值y轴缩放
+scale（1.0，2.0）默认水平和垂直缩放！！！   水平缩放1.0倍  垂直缩放2.0倍
+scale3d（1.0，2.0,3.0）水平 垂直 z轴
+=================================================================================
+transition：必须写 一个值   必须写时间！！！！！！   触发执行的简单过渡动画
+transition-property: 过渡属性 默认值all        width，height,background,font-size,border-radius;
+transition-duratin:过渡时间  0s 默认值   1s  =1000ms
+transition-timing-function：过渡类型 默认值 ease   linear   ease-in   越来越快   ease-out  越来越慢  ease-in-out   以慢开始  以慢结束
+
+transition-delay  ： 延迟时间    默认值  0s 
+====================================================================================
+
+自执行动画   animation  复合属性   必须写两个属性值   动画的名字  动画执行的时间
+
+
+animation-name：  动画的名字
+animation-duration：  动画执行的时间  默认值   0s  
+animation-timing-function： 动画执行的类型：ease  默认值   linear   ease-in  ease-out  ease-in-out
+animation-direction：默认值   normal   reverse 反向    alternate 先正向后反向交替执行   alternate-reverse(先反向后正向交替执行)
+animation-iteration-count：默认值  1 次     无线次数  infinite  无限次数      动画执行的次数
+animation-fill-mode：  默认值 none  forwards  在结尾处停下来   backwards  在开始处停下来  both   开始或结束的状态
+animation-delay;动画延迟执行的时间  默认值 0s
+
+
+声明动画  定义动画
+@keyframes   move
+{
+
+from{width:0px;height:100px} 
+to{width:0px;height:0px}
+
+}
+
+
+=========================================================================================
+
+弹性盒
+
+设置弹性盒
+
+dislplay：flex  ；  都可以！！！！！
+
+display：inline-flex；   设置行内元素的弹性！！！
+
+设置弹性盒主轴的方向！！！
+
+
+flex-direction: row  默认值      column垂直反向      row-reverse 水平反向  column-reverse  垂直方向     加给父元素
+设置侧轴对齐的方向：align-items：默认值stretch  拉伸    flex-start   flex-end  center  baseline 文字基线对齐  加给父元素
+设置主轴的对齐方向： justify-content:默认值 flex-start  flex-end  center  space-around   space-between；   加给父元素
+设置是否换行 flex-wrap: 默认值  nowrap   wrap换行  wrap-reverse  换行 反向；  加给父级
+flex-flow： 复合属性；  加给父元素  默认值 row  nowrap
+flex-direction  flex-wrap    
+=====================================================================================================
+flex：复合属性  0 1  auto
+flex-grow 平分父级剩余空间     0    
+flex-shrink 设置弹性盒的收缩比例；1
+flex-basis  设置弹性盒的基准比例；  auto； 单位  可以  %  px rem em；
+
+
+order  子元素显示的顺序 默认值0；
+
+-9 -8 -7 -6 -5 - 4 - 3 - 2 -1 0   1 2 3  4  5  6 7  8  9   值越小越靠前  值越大越靠后；
+align-self  设置子元素单独在侧轴的排列方式 默认值  auto；flex-start  flex-end  center  baseline ；  stretch 拉伸
+
+===============================================================================================================
+弹性盒首尾固定
+1.
+
+*{
+	margin:0;padding:0
+	font-size:0.14rem;
+	box-sizing:border-box;
+}
+html{
+	font-szie:625%
+}
+html,body,.box{
+	width:100%;
+	height:100%;
+}
+
+.box{
+	display:flex;
+	flex-direction；column；
+
+}
+header{
+	width：100%；
+	height：.4rem；
+}
+section{
+	width：100%；
+	flex：1；
+	overflow-y：scroll；
+}
+footer{
+	width:100%;
+	height:.4rem;
+}
+========================================================================
+媒体查询！！！！！！！！！！
+media  媒体的意思
+
+@media  媒体的类型  and （查询的条件）{
+
+
+}
+
+
+ 条件空格隔开！
+@media  screen and  （max-width：250px）{
+		.box{color:red}
+}   
+
+没有查询条件
+@media screen {
+			.box{
+				background: pink;
+			}
+		}
+
+ 只有媒体
+@media {
+			.box{
+				background: pink;
+			}
+		}
+
+
+媒体的类型
+
+screen  电脑屏幕手机屏幕
+tv      电视
+print   打印机
+all  代表的是所有的媒体类型;
+handheld: 手持设备 ！！！！！！！！  已经淘汰！！！
+
+关键字
+and   代表的是条件连接   和
+only  仅仅   只有
+not  除了 某种条件   相反 ！！！！
+
+媒体查询的条件 注意放在小括号里面 （max-width：250px）
+max-width:800px  最大宽度 800px  小于800px 的时候执行
+max-height  最大高度
+min-width：600px  最小宽度    大于600px 的时候执行
+min-height：500px
+width:600px;
+height:500px;
+color
+scan 定义电视类设备的扫描工序
+
+1.放在style  里面  内嵌
+<style>
+@media screen and  (max-width:600px){
+	.box{
+		color:red;
+	}
+
+
+
+}
+
+</style>
+
+
+2.link	外部链接
+
+<style media="screen and (width:600px)">
+
+=========================================================
+多个媒体查询条件 and 连接多个查询条件
+
+
+@media  screen and (max-width: 600px) and (min-width: 300px){
+			.box{
+				background: pink;
+			}6
+
+==========================================================
+
+多个媒体类型
+
+		@media  screen and (max-width: 600px), print and (max-width: 400px){
+			.box{
+][PKJ BNM,L;'
+4563
++F T+43W	op
++
+  
+				background: pink;
+			}
+		}
+===========================================================
+@media  screen  （max-width ：320px）{   iphone 4，5
+
+}
+@media  screen  （max-width ：375px）{   iphone6
+
+}
+、@media  screen  （min-width ：375px）{   iphone6  以上   7   红色！！！
+
+}
+
+==================================================================
+counter-reset：num   0； 定义一个计数器     num 计数器的名字   0默认值  从0开始  正负都可以
+
+定义计数器加给父级！！！！
+counter-reset 重置计数器；
+counter-reset  重置计数器； 如果 display ：none 无法重置计数器  visibility：hidden  可以重置计数器  
+counter-reset：none  计数器复位
+
+
+``````````````````````````````````````````````````````````````````````````````````````````````````
+counter-increment:shop 1    计数器 增加  默认值 是1  正负都可以   如果是正数     增加  负数 减少
+
+display：none 计数器  无法增加计数；
+visibility：hidden  计数器可以增加
+counter-increment：none  阻止计数器增加
+
+``````````````````````````````````````````````````````````````````````````````````````````````````````
+counter(num) 输出计数器
+
+content：counter（num）
+counter(num,lower-roman) lower-roman 小写罗马数字    upper-roman   大写罗马数字      lower-alpha 小写英语字母   lower-alpha 大写英语字母 
+//
+=====================================================================================
+
+设置多行溢出隐藏   注意 千万别给高度！！！！！！！！
+			display:-webkit-box;   开启老弹性盒
+			-webkit-box-orient:vertical;  设置老弹性盒的主轴方向   垂直方向     horizontal ?水平方向
+			-webkit-line-clamp:4;  显示几行！！！！！！！
+			overflow: hidden;  文字溢出隐藏
+			word-break: break-all; 强制文字换行！！！！！
+
+
+
+
+
+=========================================================================================
+设置或检索对象的区域是否允许用户缩放，调节元素尺寸大小 resize
+resize  默认值 none    both 水平和垂直  veritical 垂直   horizontal  水平   ！！！
+
+注意 需要配合  overflow;scroll         除了visible 都可以！！！！！！！！！
+=========================================================================================
+
+
+外轮廓   outline    外轮廓和 border 很像  注意 外轮廓 不占位置     外轮廓css3；
+
+outline  复合属性    注意 不占位 css3
+outline：20px solid  red;
+outline-width:20px;   外轮廓的粗细；  medium  正常值（正常值）  thin  比默认值细   thick  比默认值粗的
+outline-color:red;  背景色的反色    invert(默认值)  只有ie 支持；
+
+=========================================================================================
+自定义图标！！！！ 两种办法！！！！
+1.。将图片命名为 favicon.ico        放在服务器根目录下  。  访问   127.0.0.1  或  localhost  本地服务器目录  
+2.<link rel="shortcut icon" href="favicon.ico" >     href  后面放图片地址
+==========================================================================================
+<input type="file" accept="image/*">   accept  可上传的文件类型    image/*  所有图片格式   
+
+<input type="file" accept=".png">  上传类型为png    image/png   image/jpg   image/gif
+
+<input type="file" accept=".txt">  上传类型为txt  
+
+<input type="file" accept=".docx">  上传类型为docx
+<input type="file" accept=".docx,.jpg">	  上传格式类型为docx   .jpg  两种格式    多种格式之间用逗号隔开！！！！
+===========================================================================================
+制作三角 ！！！！！！！！！！！！
+     
+
+1.width:0;  height:0; border：50px  solid  transparent； border-left-color：red;
+如果是行内元素  加  display：inline-block；
+
+
+2.width:0;height:0;border-style:solid  ;   border-width: 50px  50px 0 50px; border-color:   red  transparent transparent tansparent;
+===========================================================================================
+==========================================================================
+
+
+boostrap    css 的一个库 。    便于开发   。快速生成网页   易于上手  
+
+
+
+   @meida  核心  栅格化布局 核心；  row一行  一共分了  12列；
+
+全局默认的样式
+
+background：#fff；font-size：14px；line-height：20px；
+
+
+引入文件 
+
+script src=“地址”    jquery  js 的一个库
+
+
+ie8  不支持  需要引入js 文件！！！！
+
+内容放在   container  容器里面  container-fluid   流式布局  栅格化布局！！
+
+row     一行   row-fluid
+==================================================
+
+col 列  xs   超小尺寸 手机！！！！  sm   小屏幕 <768px   md  中等尺寸    768<md<1200   lg 大型设备   lg>1200
+
+
+
+md  middle   
+sm  小尺寸      
+xs  超小尺寸  
+lg 超大尺寸；
+
+col-xs-3    
+col-sm-2  
+col-md-1
+col-lg-2
+
+col-md-offset-5 向右 推 几个！！
+
+pull-right  右浮动！！！
+
+pull-left  左浮动！！！！
+=================================
+text-primary  首要的 颜色
+text-danger   危险的  红色  
+ text-info    信息   浅蓝  information 的简写
+text-warning  土黄      警告！！！
+text-success  成功    绿色
+text-muted    灰色   减弱的！！！！
+
+text-left  左对齐
+text-center  居中对齐
+text-right    右对齐
+text-jusitify  两端对齐
+
+btn   定义按钮  先添加btn  类
+
+btn-default  默认按钮  白色
+btn-success   成功的     绿色  
+btn-danger   危险的  红色
+btn-warning  警告  橙色
+btn-primary  首要的  蓝色
+btn-info   信息 浅蓝  information 简写
+
+btn-lg
+btn-sm
+btn-xs
+btn-mini
+btn-md
+btn-block   按钮 变成块级元素
+ 
+disabled  禁用        都加在class  里面
+active  按下的状态
+
+<span class="caret "></span>  三角形
+
+=============================================
+  表格
+
+table  类
+table-bordered  表格的边框
+table-striped    各行变色    斑马线
+table-hover 鼠标滑过的时候改变背景色
+table-condensed   紧凑的表格    
+
+bg-danger   表格背景色  危险的
+bg-success    表格背景  成功的
+
+========================================
+
+ul
+
+list-unstyled  取消ul li  的列表项目符号
+=============================================
+
+表单！！！！！！
+
+垂直式
+行式
+搜索式
+水平式
+ 导航！！！！！！
+nav    加  类
+
+nav-tabs 切换类导航条
+nav-tabs 切换类导航条
+nav-pills 胶囊式导航条类名
+nav-brand    面包屑导航	
+breadcrumb  面包屑导航条  这个前面不用加 nav 
+nav-stacked  叠放式 导航
+nav 的默认值是nav 和 nav-default ..
+===========================================

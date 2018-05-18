@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0;}
+		.box{width: 1000px;border: 1px solid #000;margin:0 auto;}
+		h3{line-height: 40px;border-bottom: 1px solid #000;padding-left: 10px;}
+		.box div{line-height: 50px;border-bottom: 1px solid #000;}
+		.box div span{margin-left: 10px;}
+		.box div a{margin-left: 20px;cursor: pointer;padding: 5px;}
+		.box div a:nth-child(2){margin:0;background: skyblue;}
+		#btn{line-height: 30px;text-align: center;cursor: pointer;}
+		li{list-style: none;}
+		b{cursor: pointer;}
+		h3 span{position: relative;background: red;color: #fff;display: none;line-height: 30px;padding: 0 5px;
+			cursor: pointer;}
+	</style>
+</head>
+<body>	
+	<div class="box" id="box">
+		<h3 id="hh">
+			已选条件：
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<b id="b">清除全部</b>
+		</h3>
+		<div>
+			<span>级别:</span>
+			<a>全部</a><a>微型车</a><a>小轿车</a><a>紧凑型车</a><a>中型车</a><a>中大型车</a><a>全部SUV</a><a>MPV</a>
+			<a>跑车</a><a>皮卡</a><a>微面</a><a>轻客</a>
+		</div>
+		<div>
+			<span>价格:</span>
+			<a>全部</a><a>10万以下</a><a>10-15万</a><a>15-20万</a><a>20-30万</a><a>30-50万</a><a>50万以上</a>
+		</div>
+		<div>
+			<span>排量:</span>
+			<a>全部</a><a>1.0L以下</a><a>1.1-1.6L</a><a>1.7-2.5L</a><a>2.6-3.0L</a><a>3.1-4.0L</a><a>4.0L以上</a>
+		</div>
+		<div>
+			<span>燃料:</span>
+			<a>全部</a><a>汽油</a><a>柴油</a><a>纯电力</a><a>无油</a><a>油电混合</a><a>插电式混动</a>
+		</div>
+		<div>
+			<span>国家:</span>
+			<a>全部</a><a>中国</a><a>日本</a><a>韩国</a><a>美国</a><a>德国</a><a>意大利</a><a>其他</a>
+		</div>
+		<div>
+			<span>级别:</span>
+			<a>全部</a><a>5座</a><a>7座</a><a>14座</a><a>其他</a>
+		</div>
+		<p id="btn">点击收起</p>
+	</div>
+	<script>
+		var divs = document.getElementById("box").getElementsByTagName("div");
+		var spns = document.getElementById("hh").getElementsByTagName("span");
+		var btn = document.getElementById("btn");
+		var b = document.getElementById("b");
+
+		for(let i=0; i<divs.length; i++){
+			divs[i].onclick = function(e){
+				var e = e || window.event;
+				var tar = e.target || e.srcElement;
+				var as = divs[i].getElementsByTagName("a");
+				if( tar.nodeName == "A" ){
+					for(var j=0; j<as.length; j++){
+						as[j].style.background = "#fff"
+					}
+					tar.style.background = "skyblue"
+					if( tar.innerHTML != "全部"){
+						spns[i].innerHTML = tar.innerHTML
+						spns[i].style.display = "inline-block"
+						spns[i].onclick = function(){
+							this.style.display = "none"
+							var as = tar.parentNode.getElementsByTagName("a");
+							for(var j=0; j<as.length; j++){
+								as[j].style.background = "#fff"
+							}
+							tar.parentNode.getElementsByTagName("a")[0].style.background = "skyblue"
+						}
+					}
+					else if( tar.innerHTML == "全部" ){
+						spns[i].style.display = "none"
+					}	
+				}	
+			}
+		}
+		b.onclick = function(){
+			var aa = document.getElementsByTagName("a");
+			for(var j=0; j<spns.length; j++){
+				spns[j].style.display = "none"
+			}
+			for(var i=0; i<aa.length; i++){
+				aa[i].style.background = "#fff"
+				if( aa[i].innerHTML == "全部" ){
+					aa[i].style.background = "skyblue"
+				}
+			}
+			
+		}	
+
+		btn.onclick = function(){
+			if( this.innerHTML == "点击拉下"){
+				for(var i=1; i<divs.length; i++){
+					divs[i].style.display = "block"
+					this.innerHTML = "点击收起"
+				}
+			}
+			else{
+				for(var i=1; i<divs.length; i++){
+					divs[i].style.display = "none"
+					this.innerHTML = "点击拉下"
+				}
+			}			
+		}	
+	</script>
+</body>
+</html>

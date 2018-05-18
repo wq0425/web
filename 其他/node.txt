@@ -1,0 +1,69 @@
+1）简单
+2）高性能，避免了频繁的线程切换开销
+3）占用资源小，因为是单线程，在大负荷情况下，对内存占用仍然很低
+4）线程安全，没有加锁、解锁、死锁这些问题
+
+
+cd/ -> 到根目录
+cd.. -> 到上一级目录
+cd+文件名 -> 进入文件目录
+cls -> 清屏
+dir -> directory -> 文件夹/文件目录
+type+(app.js/index.html) -> 查看文件内容
+mkdir -> 新建文件夹
+time -> 查看/修改时间
+data -> 查看/修改日期
+
+抛出：module.exportx = exports = {}
+
+查看模块缓存/路径：require.cache
+
+查看对象中的属性：Object.keys(obj)
+
+获取命令行参数：process.argv
+
+npm init:创建package.json包管理文件
+    main:入口模块路径
+    name:包名
+
+npm install 包名:下载第三方包
+    -g:全局下载包
+    --save:生成dependencies依赖
+    --save-dev/-D:生成devDependencies依赖
+
+npm root -g:查看全局路径
+
+更改npm全局路径:
+npm config set cache 路径
+npm config set prefix 路径
+
+工程构成:
+主入口文件：app.js  main.js  index.js
+包管理文件：package.json -> npm.init
+模块目录：node_modules
+子文件目录：lib  dist
+静态资源目录：html css img json js
+说明性文件：readme.md
+
+安装命令行程序：
+1、建一个cmd后缀名的文件
+2、在cmd文件里面输入命令，以%*结尾
+3、输入@pause，防止自动退出程序
+4、双击运行
+
+fs模块：
+读取文件：fs.readFile(文件,{encoding:utf-8}:转为中文字符串,function(err,data){err.message(错误信息) data(读取的信息)}
+                 var data = fs.readFileSync(文件)
+写入文件：fs.writeFile(文件，内容，function(err){throw err})
+                 fs.writeFileSync(文件，内容)
+读取文件目录：fs.readdir(文件目录,function(err,paths){err.message(错误信息) paths(读取的信息)}
+                        var paths = fs.readdir(文件目录)
+创建文件目录：fs.mkdir(文件目录) || fs.mkdirSync(文件目录)
+判断是否存在文件/文件目录：fs.exists(文件/文件目录,function(exist){exist(返回布尔值)})
+查看文件/文件目录信息：fs.stat(文件/文件目录，function(err,st){st.isFile():是否为文件 || st.isDirectory():是否为文件目录})
+追加内容到文件：fs.appendFile(文件，内容，function(err){throw err})
+	            fs.appendFileSync(文件，内容)
+修改文件/文件目录的名字：fs.rename(文件/文件目录,新名字,function(err){throw err})
+		           fs.renameSync(文件/文件目录,新名字)
+删除文件目录：fs.rmdir(文件夹,function(err){throw err})
+	        fs.rmdirSync(文件夹)

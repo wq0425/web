@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		a();
+		function a(){
+			var str = "1234567890abcdef";
+			var arr = "#";
+			for(var i=0; i<6; i++){
+				var num = Math.floor(Math.random()*str.length);
+				arr += str[num] 	
+			}
+			document.body.style.background = arr;
+		}
+		setInterval( a , 100 )
+	</script>
+</body>
+</html>

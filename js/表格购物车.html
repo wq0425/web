@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0;}
+		#tab{width: 600px;margin: 20px auto;border-collapse: collapse;text-align: center;}
+		#tab tr td{border:1px solid #666;height: 30px;}
+		#tab tr th{border:1px solid #666;height: 40px;background: #fff;}
+		#tab b{font-size: 30px;color: red}
+		#tab span{padding: 3px 5px;background: #ffc;margin:0 10px;cursor: pointer;}
+		input{text-align: center;}
+		.bg{background: orange;}
+	</style>
+</head>
+<body>
+	<table id="tab">
+		<thead>
+			<tr>
+				<th colspan="5">购物车</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><input type="checkbox" name="ck"></td>
+				<td>10</td>
+				<td><span class="jian">-</span><input type="text" value="0"><span class="jia">+</span></td>
+				<td style="width: 50px">0</td>
+				<td><button>删除</button></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="ck"></td>
+				<td>20</td>
+				<td><span class="jian">-</span><input type="text" value="0"><span class="jia">+</span></td>
+				<td>0</td>
+				<td><button>删除</button></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="ck"></td>
+				<td>30</td>
+				<td><span class="jian">-</span><input type="text" value="0"><span class="jia">+</span></td>
+				<td>0</td>
+				<td><button>删除</button></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="ck"></td>
+				<td>40</td>
+				<td><span class="jian">-</span><input type="text" value="0"><span class="jia">+</span></td>
+				<td>0</td>
+				<td><button>删除</button></td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="2"><input type="checkbox" id="ipt">全选/全不选</td>
+				<td colspan="3">数量<b>0</b> 合计：<b>0</b>元</td>
+			</tr>
+		</tfoot>
+	</table>
+
+	<script>
+		function Table(){
+			this.trs = document.getElementsByTagName("tr")
+			this.ipt = document.getElementById("ipt")
+			this.tab = document.getElementById("tab")
+			this.row = document.getElementsByTagName("tbody")[0].rows
+			this.ipts = document.getElementsByTagName("input")
+			this.bs = document.getElementsByTagName("b")
+			this.bindClick()
+			this.all()
+			
+		}
+
+		Table.prototype = {
+			constructor:Table,
+			bindClick:function(){
+				var that = this
+				for(var i=0; i<this.trs.length; i++){
+					this.trs[i].onclick = function(e){
+						var e = e || window.event
+						var tar = e.target || e.srcElement
+						if( tar.nodeName == "SPAN" ){
+							if( tar.className == "jia"){
+								tar.previousSibling.value = parseInt(tar.previousSibling.value) + 1
+								tar.parentNode.nextElementSibling.innerHTML = tar.previousSibling.value * tar.parentNode.previousElementSibling.innerHTML
+							}
+							else if( tar.className == "jian"){
+								tar.nextSibling.value = parseInt(tar.nextSibling.value) - 1
+								if( parseInt(tar.nextSibling.value) <= 0 ){
+									tar.nextSibling.value = 0
+								}
+								tar.parentNode.nextElementSibling.innerHTML = tar.nextSibling.value * tar.parentNode.previousElementSibling.innerHTML
+							}
+						}	
+						else if( tar.nodeName == "BUTTON" ){
+							that.tab.getElementsByTagName("tbody")[0].removeChild(tar.parentNode.parentNode)
+						}
+						that.sum()
+					}
+				}
+			},
+			sum:function(){
+				var count=0;
+				var price=0;
+				for(var i=0;i<this.row.length;i++){
+					if( this.row[i].getElementsByTagName('input')[0].checked ){
+						count+=Number(this.row[i].getElementsByTagName('input')[1].value)
+						price+=Number(this.row[i].cells[3].innerHTML)
+					}
+				}
+				this.bs[0].innerHTML=count
+				this.bs[1].innerHTML=price;
+			},
+			all:function(){
+				var that=this;
+				this.ipt.onclick=function(){
+					for(var i=0;i<that.ipts.length;i++){
+						that.ipts[i].checked=this.checked;
+						if(this.checked){
+							that.sum()
+						}else{
+							that.bs[0].innerHTML=0;
+							that.bs[1].innerHTML=0;
+						}
+					}
+				}
+			}
+		}
+
+		new Table()
+	</script>
+</body>
+</html>

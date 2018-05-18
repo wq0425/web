@@ -1,0 +1,29 @@
+#Header{
+    width: 100%;
+    height: 1rem;
+    text-align: center;
+    line-height: 1rem;
+    font-weight: bold;
+    font-size: .35rem;
+    background:-webkit-linear-gradient(left,#0af,#0085ff); 
+    color:#fff;
+}
+#Header i{
+    color:#fff;
+}
+#Header .home{
+    text-align: left;
+    margin-left: .3rem;
+    font-size: .35rem;
+}
+#Header .home i{
+    margin-right: .2rem;
+}
+#Header .other{
+    position: relative;
+    font-size: .3rem;
+}
+#Header .other i{
+    position: absolute;
+    left:.2rem;
+}

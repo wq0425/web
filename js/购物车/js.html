@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0}
+		h1{text-align: center;}
+		a{text-decoration: none;}
+		.box{width: 930px;height: 447px;border: 1px solid #000;margin:0 auto;position: relative;}
+		.one{widows: 100%;height: 80px;border-bottom: 1px solid #000;border-top: 1px solid #000;clear: both;}
+		p{width: 130px;float: left;line-height: 80px;text-align: center;border-right: 1px solid #000;}
+		input{margin-right: 10px;}
+		.ipt{width: 30px;text-align: center;}
+		img{width: 129px;height:80px;float: left;}
+		.one p:last-child{border: 0;cursor: pointer;}
+		.b{color: #000;}
+		.a{color: #000;}
+		.img{position: absolute;left: 0;bottom: 0;}
+		.last1{line-height: 30px;position: absolute;bottom: -30px;right: 0}
+		.last2{line-height: 30px;position: absolute;bottom: -60px;right: 0}
+		ul li{float: left;list-style: none;}
+	</style>
+</head>
+<body>
+	<div class="box" id="box">
+		<h1>购物车</h1>
+		<div class="one">
+			<p><input type="checkbox">全选</p>
+			<p>商品名称</p>
+			<p>图片</p>
+			<p>单价</p>
+			<p>数量</p>
+			<p>小计</p>
+			<p>不喜欢</p>		
+		</div>
+		<div class="one">
+			<p><input type="checkbox"></p>
+			<p>小孩子</p>
+			<p><img src="1.jpg" alt=""></p>
+			<p>100</p>
+			<p><input type="text" value="1" class="ipt"><a href="javascript:;" class="a">+</a><a href="javascript:;" class="b">&nbsp;</a></p>
+			<p>100</p>
+			<p>删除</p>
+		</div>
+		<div class="one">
+			<p><input type="checkbox"></p>
+			<p>小孩子</p>
+			<p><img src="1.jpg" alt=""></p>
+			<p>110</p>
+			<p><input type="text" value="1" class="ipt"><a href="javascript:;" class="a">+</a><a href="javascript:;" class="b">&nbsp;</a></p>
+			<p>110</p>
+			<p>删除</p>
+		</div>
+		<div class="one">
+			<p><input type="checkbox"></p>
+			<p>小孩子</p>
+			<p><img src="1.jpg" alt=""></p>
+			<p>120</p>
+			<p><input type="text" value="1" class="ipt"><a href="javascript:;" class="a">+</a><a href="javascript:;" class="b">&nbsp;</a></p>
+			<p>120</p>
+			<p>删除</p>
+		</div>
+		<div class="one">
+			<p><input type="checkbox"></p>
+			<p>小孩子</p>
+			<p><img src="1.jpg" alt=""></p>
+			<p>130</p>
+			<p><input type="text" value="1" class="ipt"><a href="javascript:;" class="a">+</a><a href="javascript:;" class="b">&nbsp;</a></p>
+			<p>130</p>
+			<p>删除</p>
+		</div>
+		<ul id="img">
+			
+		</ul>
+		<h2 class="last1">数量：<span id="counts">&nbsp;&nbsp;</span></h2>
+		<h2 class="last2">总价：<span id="prices">&nbsp;&nbsp;</span></h2>
+	</div>
+	<script>
+		var ipts = document.getElementsByTagName("input");
+		var as = document.getElementsByTagName("a");
+		var divs = document.getElementById("box").getElementsByTagName("div")
+		var counts = document.getElementById("counts")
+		var prices = document.getElementById("prices")
+		var img = document.getElementById("img")
+
+		//全选点击
+		ipts[0].onclick = function(){
+			for(var i=0; i<ipts.length; i++){
+				ipts[i].checked = this.checked;
+			}
+			getThing()
+		}
+		//每个按钮点击
+		for(var j=1; j<ipts.length; j++){
+			ipts[j].onclick = function(){
+				var boo = true;
+				for(var i=1; i<ipts.length; i++){
+					if(!ipts[i].checked){
+						boo = false
+					}	
+				}
+				ipts[0].checked = boo;
+				getThing()
+			}
+		}
+
+		//总价和数量函数
+		function getThing(){
+			var count = 0;
+			var price = 0;
+			var imgs = "";
+			for(var i=1; i<divs.length; i++){
+				if(divs[i].getElementsByTagName("input")[0].checked){
+					price += parseInt(divs[i].getElementsByTagName("p")[5].innerHTML);
+					count += parseInt(divs[i].getElementsByTagName("input")[1].value);
+					imgs+="<li><img src='"+divs[i].getElementsByTagName("img")[0].src+"'/><span class='close' data_img='"+i+"'>&times;</span></li>"
+				}	
+			}
+			prices.innerHTML = price.toFixed(2);
+			counts.innerHTML = count;
+			img.innerHTML = imgs
+		}
+		//给每一行时间委托
+		for(let i=1; i<divs.length; i++){
+			divs[i].onclick = function(e){
+				var e = e || window.event;
+				var tar = e.target || e.srcElement;
+				var iptVal = this.getElementsByTagName("input")[1];
+				var smallMoney = 0;
+
+				if( tar.className == "a" ){
+					iptVal.value = parseInt(iptVal.value) + 1;
+				}
+				if( tar.className == "b" ){
+					if(iptVal.value>1){
+						iptVal.value = parseInt(iptVal.value) - 1;
+					}
+				}
+				if(iptVal.value>1){
+					this.getElementsByTagName("a")[1].innerHTML = " - "
+				}
+				else{
+					this.getElementsByTagName("a")[1].innerHTML = "&nbsp;"
+				}
+
+				if( tar.innerHTML == "删除" ){
+					this.parentNode.removeChild(this)
+				}
+				//小计的钱
+				smallMoney = iptVal.value * this.getElementsByTagName("p")[3].innerHTML;
+				this.getElementsByTagName("p")[5].innerHTML = smallMoney;
+				//调用函数解决数量、总价问题
+				getThing()
+			}
+		}
+		//ul点击
+		img.onclick = function(e){
+        	var e = e || window.event
+        	var tar = e.target || e.srcElement
+	        if(tar.className=='close'){
+		    	var ind = tar.getAttribute("data_img")
+		        var inputs = divs[ind].getElementsByTagName('input')[0]
+		        inputs.checked=false;
+		    	inputs.onclick()
+	        }
+        }
+	</script>
+</body>
+</html>

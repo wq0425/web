@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;}
+		ol,li ul,li{list-style: none;}
+		img{width: 200px;margin:100px auto 50px auto;display: block;}
+		p{margin:20px auto;display: block;width: 400px;}
+		a{margin-left: 10px;}
+		#box{width: 510px;margin:0 auto;}
+		input{width: 400px;height: 30px;float: left;border: 1px solid #000;}
+		button{float: left;height: 34px;width: 100px;margin-left: 5px;}
+		.div{width: 510px;margin: 0 auto;position: relative;}
+		ul{clear: both;width: 400px;border: 1px solid #000;line-height: 30px;position: absolute;top: 32px;
+			display: none;}
+		ul li{cursor: pointer;padding-left: 10px;}
+		ul li:hover{background: #e4e4e4;}
+	</style>
+</head>
+<body>
+	<img src="1.gif" alt="">
+	<p>
+		<a href="javascript:;">新闻</a>
+		<a href="javascript:;">网页</a>
+		<a href="javascript:;">贴吧</a>
+		<a href="javascript:;">知道</a>
+		<a href="javascript:;">音乐</a>
+		<a href="javascript:;">图片</a>
+		<a href="javascript:;">视频</a>
+		<a href="javascript:;">地图</a>
+	</p>
+	<div id="box">
+		<input type="text" id="ipt">
+		<button>百度一下</button>
+	</div>
+	<div class="div">
+		<ul id="ul"></ul>
+	</div>
+	
+	<script>
+		var inner = [
+			{"text":"中国银行"},
+			{"text":"中国移动网上营业厅"},
+			{"text":"中国移动"},
+			{"text":"中国工商银行"},
+			{"text":"中关村"},
+			{"text":"中国电信"},
+			{"text":"中国联通"},
+			{"text":"中国好声音"},
+			{"text":"中国大萧哥"},
+			{"text":"中国建设银行"}
+		];
+		var ipt = document.getElementById("ipt"),
+			ul = document.getElementById("ul");
+		var count = -1;
+
+		ipt.onkeyup = function(e){	
+			var e = e || window.event;
+			if( ipt.value != "" ){
+				var arr = [];
+				for(var i=0; i<inner.length; i++){
+					var one = inner[i].text;
+					if( one.indexOf(ipt.value) != -1 ){
+						arr.push("<li>"+ one +"</li>")
+					}
+					ul.innerHTML = arr.join("")
+					ul.style.display = "block"
+
+					ul.onclick = function(e){
+						var e = e || window.evnet;
+						var tar = e.target || e.srcElement;
+						ipt.value = tar.innerHTML;
+						ul.innerHTML = ""
+						ul.style.display = "none"
+					}
+				}
+				var lis = ul.getElementsByTagName("li")
+				if( e.keyCode == 38 ){
+					count--;
+					if( count < 0 ){
+						count = lis.length - 1
+					}
+					lis[count].style.background = "#e4e4e4"
+				}
+				else if( e.keyCode == 40 ){
+					count++;
+					if( count > lis.length - 1 ){
+						count=0;
+					}
+					lis[count].style.background = "#e4e4e4"
+				}
+				else if( e.keyCode == 13 ){
+					ipt.value = lis[count].innerHTML;
+					count = -1
+					ul.innerHTML = ""
+					ul.style.display = "none"
+				}
+			}
+			else{
+				ul.innerHTML = ""
+				ul.style.display = "none"
+			}
+		}
+		document.onclick=function(){
+			ul.style.display = "none"
+			ul.innerHTML = ""
+		}
+	</script>
+</body>
+</html>

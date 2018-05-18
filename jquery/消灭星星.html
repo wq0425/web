@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;list-style: none;}
+		ul,.box,ol{float: left;margin-top: 200px;}
+		.box{margin-top: 310px;margin-left: 20px;margin-right: 20px;}
+		ul{margin-left: 550px;}
+		ul,ol{width: 150px;border: 1px solid #000;padding-left: 10px;height: 270px;}
+		li{line-height: 30px;}
+		input{margin-right: 10px;}
+	</style>
+</head>
+<body>
+	<ul>
+		<li><input type="checkbox">消灭星星1</li>
+		<li><input type="checkbox">消灭星星2</li>
+		<li><input type="checkbox">消灭星星3</li>
+		<li><input type="checkbox">消灭星星4</li>
+		<li><input type="checkbox">消灭星星5</li>
+		<li><input type="checkbox">消灭星星6</li>
+		<li><input type="checkbox">消灭星星7</li>
+		<li><input type="checkbox">消灭星星8</li>
+		<li><input type="checkbox">消灭星星9</li>
+	</ul>
+	<div class="box">
+		<button id="add">添加</button>
+		<button id="del">删除</button>
+	</div>
+	<ol>
+	</ol>
+	<script src="jquery-1.8.3.min.js"></script>
+	<script>
+		var arr = []
+		$("#add").click(function(){
+			$("ul :checked").each(function(){
+				var txt = $(this).parent().text()
+				if( $.inArray(txt,arr) == -1 ){
+					arr.push(txt)
+					var newLi = $("<li><input type='checkbox'/>"+txt+"</li>")
+					$("ol").append(newLi)
+				}
+			})
+			$("ul input").prop("checked",false)
+		})
+		$("#del").click(function(){
+			$("ol :checked").each(function(){
+				var txt = $(this).parent().text()
+				if( $.inArray(txt,arr) != -1 ){
+					arr.splice(arr.indexOf(txt),1)
+					$(this).parent().remove()
+				}
+			})
+		})
+	</script>
+</body>
+</html>

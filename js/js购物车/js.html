@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding: 0;}
+		img{width: 70px;height: 70px;}
+		a{text-decoration: none;}
+		dl{float: left;}
+		dt{float: left;}
+		dd{float: left;margin-left: 10px;}
+		dd h3:nth-child(3){color: red;}
+		#box{width: 700px;height: 500px;margin:0 auto;border: 1px solid #666666;}
+		#left{width: 150px;height: 450px;float: left;background: #eeeeee;}
+		#left p{line-height: 55px;text-align: center;border-bottom: 1px dashed #666666;cursor: pointer;}
+		#left p:nth-child(1){background: #fff;line-height: 57px;}
+		#right{width: 550px;height: 450px;float: left;}
+		#right div{clear: both;padding: 10px;border-bottom: 1px solid #666666;height: 70px;}
+		#right p{float: right;font-size: 20px;margin-top: 25px;}
+		#right a{display: inline-block;width: 20px;height: 20px;border-radius: 50%;border: 3px solid #000;color: #000;
+			text-align: center;font-weight: bolder;}
+		#right a:first-child{display: none;}
+		#right b{display: none;}
+		#down{clear: both;width: 700px;height: 100px;line-height: 50px;padding-left: 20px;}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="left">
+			<p>营养套餐</p>
+			<p>营养套餐</p>
+			<p>营养套餐</p>
+			<p>营养套餐</p>
+			<p>营养套餐</p>
+			<p>营养套餐</p>
+			<p>营养套餐</p>
+			<p>营养套餐</p>
+		</div>
+		<div id="right">
+			<div>
+				<dl>
+					<dt><img src="1.jpg" alt=""></dt>
+					<dd>
+						<h3>男孩</h3>
+						<h3>家里的</h3>
+						<h3>500元</h3>
+					</dd>
+				</dl>
+				<p>
+					<a href="javascript:;">-</a>
+					<b>0</b>
+					<a href="javascript:;">+</a>
+				</p>
+			</div>
+			<div>
+				<dl>
+					<dt><img src="2.jpg" alt=""></dt>
+					<dd>
+						<h3>女孩</h3>
+						<h3>家里的</h3>
+						<h3>600元</h3>
+					</dd>
+				</dl>
+				<p>
+					<a href="javascript:;">-</a>
+					<b>0</b>
+					<a href="javascript:;">+</a>
+				</p>
+			</div>
+			<div>
+				<dl>
+					<dt><img src="3.jpg" alt=""></dt>
+					<dd>
+						<h3>小女孩</h3>
+						<h3>家里的</h3>
+						<h3>700元</h3>
+					</dd>
+				</dl>
+				<p>
+					<a href="javascript:;">-</a>
+					<b>0</b>
+					<a href="javascript:;">+</a>
+				</p>
+			</div>
+			<div>
+				<dl>
+					<dt><img src="4.jpg" alt=""></dt>
+					<dd>
+						<h3>小男孩</h3>
+						<h3>家里的</h3>
+						<h3>800元</h3>
+					</dd>
+				</dl>
+				<p>
+					<a href="javascript:;">-</a>
+					<b>0</b>
+					<a href="javascript:;">+</a>
+				</p>
+			</div>
+		</div>
+		<div id="down">
+			已选：<span id="num">0</span>份 &nbsp; 总计：￥<span id="money">0.00</span>元
+		</div>
+	</div>
+	<script>
+		var right = document.getElementById("right");
+		var ps = right.getElementsByTagName("p");
+		var num = document.getElementById("num");
+		var money = document.getElementById("money");
+		var pp = document.getElementById("left").getElementsByTagName("p");
+
+		for(var i=0; i<ps.length; i++){
+			ps[i].onclick = function(e){
+				var bs = document.getElementsByTagName("b")
+				var arr = [];
+				var e = e || window.event;
+				var tar = e.target || e.srcElement;
+				var pre = tar.previousElementSibling;
+				var next = tar.nextElementSibling;
+				if( tar.innerHTML == "+" ){
+					pre.innerHTML = parseInt(pre.innerHTML) + 1;
+					pre.style.display = "inline-block"
+					pre.previousElementSibling.style.display = "inline-block"
+				}
+				if( tar.innerHTML == "-" ){
+					next.innerHTML = parseInt(next.innerHTML) - 1;
+					if( parseInt(next.innerHTML) < 1 ){
+						next.style.display  = "none"
+						tar.style.display = "none"
+					}
+				}
+				for(var j=0; j<bs.length; j++){
+					arr.push(bs[j].innerHTML)
+				}
+				num.innerHTML = parseInt(arr[0]) + parseInt(arr[1]) + parseInt(arr[2]) + parseInt(arr[3]);
+				money.innerHTML = parseInt(arr[0]*500) + parseInt(arr[1]*600) + parseInt(arr[2]*700) + parseInt(arr[3]*800)
+			}
+		}
+		
+
+		for(var i=0; i<pp.length; i++){
+			pp[i].onmouseover = function(){
+				for(var j=0; j<pp.length; j++){
+					pp[j].style.background = "#eeeeee"
+				}
+				this.style.background = "#fff";
+			}
+		}
+	</script>
+</body>
+</html>

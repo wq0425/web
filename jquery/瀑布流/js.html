@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0}
+		#wrap{margin:0 auto;position: relative;}
+		img{width: 250px;position: absolute;}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<img src="1.jpg" alt="">
+		<img src="2.jpg" alt="">
+		<img src="3.jpg" alt="">
+		<img src="4.jpg" alt="">
+		<img src="5.jpg" alt="">
+		<img src="6.jpg" alt="">
+		<img src="7.jpg" alt="">
+		<img src="8.jpg" alt="">
+		<img src="9.jpg" alt="">
+		<img src="10.jpg" alt="">
+		<img src="11.jpg" alt="">
+		<img src="12.jpg" alt="">
+		<img src="13.jpg" alt="">
+		<img src="14.jpg" alt="">
+		<img src="15.jpg" alt="">
+		<img src="16.jpg" alt="">
+		<img src="17.jpg" alt="">
+		<img src="18.jpg" alt="">
+		<img src="19.jpg" alt="">
+		<img src="20.jpg" alt="">
+		<img src="21.jpg" alt="">
+		<img src="22.jpg" alt="">
+	</div>
+	<script src="jquery-1.8.3.min.js"></script>
+	<script>
+		var imgW = $("img").width() + 20 //获取一张图片的宽度
+		var wid = $(window).width()	     //获取浏览器可视宽度
+		var count = Math.floor(wid/imgW) //求浏览器能放几张图片
+		$("#wrap").width(count*imgW)     //设置大盒子的宽度
+		var arr = []
+		var q = 0;
+		function get(start,end){
+			for( var i=start; i<end; i++ ){
+				//第一排的都为0，i小于能放的图片数量
+				if( i < count ){
+					arr.push(0)
+				}
+				var minH = Math.min.apply(Math,arr) //查找数组中最小的高度
+				var ind = $.inArray(minH,arr)       //查找最小高度的下标
+				//下一张的left为最小高度下标的下面，top为最小的高度
+				$("img").eq(i).stop().animate({left:ind*imgW,top:minH},1000) 
+				//数组中的最小高度加上下一张的高度
+				arr[ind] += $("img").eq(i).height() + 20 
+				q++
+			}
+		}
+
+		get(0,$("img").length)
+
+		$(window).on("scroll",function(){
+			//滚动条高度
+			var top = $(this).scrollTop()
+			//页面高度减去浏览器可视高度
+			var hei = $(document).height() - $(window).height()
+			//如果滚动条高度大于减去的高度就执行函数
+			if( top >= hei ){
+				show()
+			}
+		})
+		function show(){
+			var obj = [{src:"23.jpg"},{src:"24.jpg"},{src:"25.jpg"},{src:"26.jpg"},{src:"27.jpg"},
+				{src:"28.jpg"},{src:"29.jpg"},{src:"30.jpg"},{src:"31.jpg"},{src:"32.jpg"},
+				{src:"33.jpg"},{src:"34.jpg"},{src:"35.jpg"},{src:"36.jpg"},{src:"37.jpg"},
+				{src:"38.jpg"},{src:"39.jpg"},{src:"40.jpg"},{src:"41.jpg"},{src:"42.jpg"},
+				{src:"43.jpg"},{src:"44.jpg"},{src:"45.jpg"},{src:"46.jpg"},{src:"47.jpg"},
+				{src:"48.jpg"},{src:"49.jpg"},{src:"50.jpg"},{src:"51.jpg"},{src:"52.jpg"},
+				{src:"53.jpg"},{src:"54.jpg"},{src:"55.jpg"},{src:"56.jpg"},{src:"57.jpg"},
+				{src:"58.jpg"},{src:"59.jpg"},{src:"60.jpg"},{src:"61.jpg"},{src:"62.jpg"},
+				{src:"63.jpg"},{src:"64.jpg"},{src:"65.jpg"},{src:"66.jpg"}];
+			get(q,$("img").length)
+			var minH = Math.min.apply(Math,arr) //查找数组中最小的高度
+			var ind = $.inArray(minH,arr)       //查找最小高度的下标
+			//循环创建图片
+			$.each(obj,function(i,val){
+				var img = $("<img>").attr(val)
+				//下一张的left为最小高度下标的下面，top为最小的高度
+				img.css({left:imgW*ind,top:minH})
+				img.appendTo("#wrap")
+			})
+		}
+	</script>
+</body>
+</html>

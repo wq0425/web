@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;}
+		li{list-style: none;}
+		#box{position: relative;width: 1000px;height: 600px;margin:100px auto;overflow: hidden;}
+		#left,#right{position: absolute;cursor: pointer;z-index: 999;}
+		#left:hover,#right:hover{background: rgba(0,0,0,.5);}
+		#left{top: 47%;left: 20px;}
+		#right{top: 47%;right: 20px;}
+		#ul{width: 7000px;position: absolute;}
+		#ul li img{float: left;width: 1000px;height: 600px;}
+		#ul img{width: 1000px;height: 600px;}
+		#ol{position: absolute;bottom: 10px;right: 10px;}
+		#ol li{float: left;width: 50px;height: 50px;background: #fff;border-radius: 50%;margin-right: 10px;
+			text-align: center;line-height: 50px;font-size: 30px;cursor: pointer;color: #000;}
+		#ol li.bg{background: #000;color:#fff;}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<script src="jquery-1.8.3.min.js"></script>
+	<script>
+		ban()
+		$(document).ready(function(){
+			var count = 0;
+			var num = 0;
+			var timer = null;
+			$("#right").on("click",function(){
+				count++
+				num++
+				if( count > $("#ul li").length - 1 ){
+					$("#ul").css("left","0px")
+					count = 1
+				}
+				$("#ul").stop().animate({"left":-1000*count},500)
+				if( num > $("#ol li").length - 1 ){
+					num = 0
+				}
+				$("#ol li").eq(num).addClass("bg").siblings().removeClass("bg")
+			})
+			$("#left").on("click",function(){
+				count--		
+				num--
+				if( count < 0 ){
+					$("#ul").css("left",-1000*($("#ul li").length - 1))
+					count = $("#ul li").length - 2
+				}
+				$("#ul").stop().animate({"left":-1000*count},500)
+				if( num < 0 ){
+					num = $("#ol li").length - 1
+				}
+				$("#ol li").eq(num).addClass("bg").siblings().removeClass("bg")
+			})
+			$("#ol li").on("click",function(){
+				var ind = $(this).index()
+				count = ind-1
+				num = ind-1
+				$("#right").click()
+			})
+			$("#box").hover(function(){
+				clearInterval( timer )
+			},function(){
+				timer = setInterval(function(){
+					$("#right").click()
+				},600)	
+			}).trigger("mouseleave")
+		})
+
+
+
+
+
+
+
+
+
+		function ban(){
+			var box = document.getElementById("box")
+			var arr = ["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","1.jpg"]
+			var str = ''
+			var left = document.createElement("div")
+			left.innerHTML = "<div id='left'><img src='left.png'></div>"
+			box.appendChild(left)
+			var right = document.createElement("div")
+			right.innerHTML = "<div id='right'><img src='right.png'></div>"
+			box.appendChild(right)
+			var ul = document.createElement("ul")
+			ul.id = "ul"
+			for(var i=0; i<arr.length; i++){
+				str += `<li><img src="${arr[i]}" alt=""></li>`
+			}
+			ul.innerHTML = str;
+			box.appendChild(ul)
+			var ol = document.createElement("ol")
+			ol.id = "ol"
+			var str1 = ''
+			for(var i=0; i<arr.length - 1; i++){
+				str1 += `<li>${i+1}</li>`
+			}
+			ol.innerHTML = str1;
+			box.appendChild(ol)
+			var olli = ol.getElementsByTagName("li")
+			olli[0].className = "bg"
+		}
+	</script>
+</body>
+</html>

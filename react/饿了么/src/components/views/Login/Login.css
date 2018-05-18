@@ -1,0 +1,48 @@
+#Login{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+#Login h2{
+    font-size: .5rem;
+    line-height: 1.5rem;
+    color:red;
+}
+#Login p{
+    width: 100%;
+    margin: .15rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: .8rem;
+    font-size: .3rem;
+    position: relative;
+}
+#Login p em{
+    font-size: .23rem;
+    color:#ccc;
+}
+#Login p span{
+    position: absolute;
+    right: 1rem;
+    padding:.15rem .2rem;
+    font-size: .25rem;
+    color:skyblue;
+}
+#Login p input {
+    height: .6rem;
+    width: 60%;
+    margin-left: .2rem;
+    padding-left: .1rem;
+}
+#Login p button{
+    width: 5.7rem;
+    height: .8rem;
+    font-size: .3rem;
+    border:0;
+    background: skyblue;
+    color: #fff;
+    margin:0 .1rem;
+}

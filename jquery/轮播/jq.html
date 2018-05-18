@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding: 0;list-style: none;}
+		body{background: #101010;overflow-x:hidden;}
+		#box{margin:100px auto;width: 800px;height: 500px;position: relative;}
+		#ul{width: 6400px;overflow: hidden;height: 500px;}
+		#ul img{width: 800px;height: 500px;}
+		#left,#right{width: 32px;height: 52px;position: absolute;cursor: pointer;}
+		#left{left:-100px;top:250px;background: url(maxBtn.png);}
+		#right{right:-100px;top:250px;background: url(maxBtn.png) -33px 0;}
+		#wrap{margin-left: -75px;margin-top: 100px;width: 950px;overflow: hidden;}
+		#ol{width: 1400px;}
+		#ol img{width: 150px;height: 100px;float: left;margin-right: 10px;cursor: pointer;opacity: .3}
+		#l,#r{position: absolute;height: 150px;background: rgba(0,0,0,.5);font-size:30px;color: #ccc;line-height: 150px;width: 35px;text-align: center;cursor: pointer;bottom: -230px;}
+		#l{left: -130px;}
+		#r{left: 900px;}
+		#tou{position: absolute;font-size: 80px;color: skyblue;line-height: 50px;display: none;}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul id="ul">
+			<li><img src="1.jpg" alt=""></li>
+			<li><img src="2.jpg" alt=""></li>
+			<li><img src="3.jpg" alt=""></li>
+			<li><img src="4.jpg" alt=""></li>
+			<li><img src="5.jpg" alt=""></li>
+			<li><img src="6.jpg" alt=""></li>
+			<li><img src="7.jpg" alt=""></li>
+			<li><img src="8.jpg" alt=""></li>
+		</ul>
+		<div id="left"></div>
+		<div id="right"></div>
+		<div id="tou">←</div>
+		<div id="wrap">
+			<ol id="ol">
+				<li><img src="1.jpg" alt="" style="opacity: 1"></li>
+				<li><img src="2.jpg" alt=""></li>
+				<li><img src="3.jpg" alt=""></li>
+				<li><img src="4.jpg" alt=""></li>
+				<li><img src="5.jpg" alt=""></li>
+				<li><img src="6.jpg" alt=""></li>
+				<li><img src="7.jpg" alt=""></li>
+				<li><img src="8.jpg" alt=""></li>
+			</ol>
+			<div id="l"><</div>
+			<div id="r">></div>
+		</div>	
+	</div>
+	<script src="jquery-1.8.3.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			var count = 0
+			function getIn(){
+				$("#ul img").eq(count).fadeIn(100).parent().siblings().children('img').fadeOut(100)
+				$("#ol img").eq(count).css("opacity","1").parent().siblings().children('img').css("opacity",".3")
+			}
+			$("#right").on("click",function(){
+				count++
+				if( count > $("#ul img").length - 1 ){
+					count = 0
+				}
+				if( count > 4  ){
+					$("#ol").css("margin-left",-320)
+				}
+				if( count == 0 && count <= 4 ){
+					$("#ol").css("margin-left",0)
+				}
+				getIn()
+			})
+			$("#left").on("click",function(){
+				count--
+				if( count < 0 ){
+					count = $("#ul img").length - 1
+					$("#ol").css("margin-left",-320)
+				}
+				if( count == 2 && count >= 0 ){
+					$("#ol").css("margin-left",0)
+				}
+				getIn()
+			})
+			$("#ol li").on("click",function(){
+				var ind = $(this).index()
+				count = ind
+				$(this).children('img').css("opacity","1").parent().siblings().children('img').css("opacity",".3")
+				$("#ul img").eq(ind).fadeIn(100).parent().siblings().children('img').fadeOut(100)
+				if( ind > 4 ){
+					$("#ol").css("margin-left",-320)
+				}
+				if( ind < 4 ){
+					$("#ol").css("margin-left",0)
+				}
+			})
+			$("#r").on("click",function(){
+				$("#right").click()
+			})
+			$("#l").on("click",function(){
+				$("#left").click()
+			})
+			var flag = false;
+			$("#box").on("mousemove",function(e){
+				var x = e.pageX - $(this).offset().left - 50 
+				var y = e.pageY - $(this).offset().top - 25
+				$("#tou").css("display","block")
+				if( x < 0 )$("#tou").css("display","none")
+				if( y < -10 )$("#tou").css("display","none")
+				if( x > 750 )$("#tou").css("display","none")
+				if( y > 450 )$("#tou").css("display","none")
+				if( x < 400 ){
+					$("#tou").text("←")
+					flag = true
+				}
+				if( x > 400 ){
+					$("#tou").text("→")
+					flag = false
+				}
+				$("#tou").css({"left":x,"top":y})
+				return flag
+			})
+
+			$("#tou").on("click",function(){
+				if( flag ){
+					$("#left").click()
+				}
+				else{
+					$("#right").click()
+				}
+			})
+		})
+
+	</script>
+</body>
+</html>

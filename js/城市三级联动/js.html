@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;}
+		#box{width: 500px;margin:20px auto;}
+		select{width: 80px;margin-left: 50px;}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<select><option>请选择</option></select>
+		<select><option>请选择</option></select>
+		<select><option>请选择</option></select>
+	</div>
+	<script src="city.js"></script>
+	<script>
+		var sls = document.getElementsByTagName("select")
+		var arr = obj.citylist
+		
+		var str = '<option>请选择</option>'
+		for(var i=0; i<arr.length; i++){
+			str += "<option>"+arr[i].p+"</option>"
+		}
+		sls[0].innerHTML = str
+		sls[0].onchange = function(){
+			var str = '<option>请选择</option>'
+			if( this.value != "请选择" ){
+				for(var i=0; i<arr.length; i++){
+					if( arr[i].p == this.value ){
+						for(var j=0; j<arr[i].c.length; j++){
+							str += "<option>"+arr[i].c[j].n+"</option>"
+						}
+						sls[1].innerHTML = str
+					}
+				}
+				sls[1].onchange = function(){
+					var str = '<option>请选择</option>'
+					for(var i=0; i<arr.length; i++){
+						if( arr[i].p == sls[0].value ){
+							for(var j=0; j<arr[i].c.length; j++){
+								if( arr[i].c[j].n == this.value ){
+									if( arr[i].c[j].a ){
+										for(var x=0; x<arr[i].c[j].a.length; x++){
+											str += "<option>"+arr[i].c[j].a[x].s+"</option>"
+										}
+										sls[2].innerHTML = str
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			else{
+				sls[1].innerHTML = '<option>请选择</option>'
+			}
+		}	
+	</script>
+</body>
+</html>

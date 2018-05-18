@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;list-style: none;}
+		#ul{width: 100px;pointer;display: none;position: absolute;}
+		#ul li{line-height: 30px;text-align: center;border: 1px solid #fff;color: #fff;cursor:pointer;}
+	</style>
+</head>
+<body>
+	<ul id="ul">
+		<li id="red" style="background: red">红色</li>
+		<li id="blue" style="background: blue">蓝色</li>
+		<li id="green" style="background: green">绿色</li>
+		<li id="yellow" style="background: yellow">黄色</li>
+		<li style="background: #000">关闭</li>
+	</ul>
+	<script>
+		var ul = document.getElementById("ul");
+
+		document.oncontextmenu = function(e){
+			var e = e || window.event;
+			stopDefault(e)
+			ul.style.display = "block";
+			var x = e.clientX;
+			var y = e.clientY;
+			ul.style.left = x + "px";
+			ul.style.top = y + "px";
+			ul.onclick = function(e){
+				var e = e || window.event;
+				var ev = e.target || e.srcElement;
+				switch( ev.innerHTML ){
+					case "红色" :
+						document.body.style.background = "red";
+						break;
+
+					case "蓝色" :
+						document.body.style.background = "blue";
+						break;
+
+					case "绿色" :
+						document.body.style.background = "green";
+						break;
+
+					case "黄色" :
+						document.body.style.background = "yellow";
+						break;
+						
+					default:
+						document.body.style.background = "#fff";
+						break;
+				}
+				ul.style.display = "none";	
+			}
+		}
+
+		function stopDefault(e){
+			if( e.preventDefault ){
+				e.preventDefault();
+			}
+			else{
+				window.event.returnValue=false;
+			}
+		}
+	</script>
+</body>
+</html>

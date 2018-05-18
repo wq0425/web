@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;}
+		.bg{width: 551px;height: 231px;background: url(bg.jpg);margin: 100px auto;position: relative;}
+		.bird{width: 50px;height: 50px;background-size: 100%;position: absolute;
+			left: 50%;transform: translate(-50%);bottom: 50px;z-index: 999;}
+		.bird img{width: 50px;height: 50px;}
+	</style>
+</head>
+<body>
+	<div class="bg" id="bg" style="background-position: 0">
+		<div class="bird" id="bird">
+			<img src="right.png" alt="">
+		</div>
+	</div>
+	<script>
+		var bird = document.getElementById("bird");
+		var bird1 = bird.getElementsByTagName("img")[0];
+		var bg = document.getElementById("bg");
+		var count = 50;
+		var timer = null;
+
+		window.onkeydown = function(e){
+			var e = e || window.event;
+			var code = e.keyCode;
+			switch( code ){
+				case 37:
+					bird1.src = "left.png";
+					bird.style.bottom = 100 + "px"
+					bg.style.backgroundPositionX = parseInt(bg.style.backgroundPositionX) + 20 + "px";
+					break;
+				case 39:
+					bird1.src = "right.png";
+					bird.style.bottom = 100 + "px"
+					bg.style.backgroundPositionX = parseInt(bg.style.backgroundPositionX) - 20 + "px";
+					break;
+			}	
+			if(parseInt(bg.style.backgroundPositionX) > 1000 || parseInt(bg.style.backgroundPositionX) < -1000){
+				alert(66666666666666)
+				bg.style.backgroundPositionX = 0;
+				bird.style.bottom = 50 + "px"
+			}
+		}
+		window.onkeyup = function(){
+			bird.style.bottom = 50 + "px"
+		}
+
+	</script>
+</body>
+</html>

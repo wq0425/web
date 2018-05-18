@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;}
+		li{list-style: none;}
+		#box{position: relative;width: 1000px;height: 600px;margin:100px auto;overflow: hidden;}
+		#left,#right{position: absolute;cursor: pointer;z-index: 999;}
+		#left:hover,#right:hover{background: rgba(0,0,0,.5);}
+		#left{top: 47%;left: 20px;}
+		#right{top: 47%;right: 20px;}
+		#ul{width: 7000px;position: absolute;}
+		#ul li img{float: left;width: 1000px;height: 600px;}
+		#ul img{width: 1000px;height: 600px;}
+		#ol{position: absolute;bottom: 10px;right: 10px;}
+		#ol li{float: left;width: 50px;height: 50px;background: #fff;border-radius: 50%;margin-right: 10px;
+			text-align: center;line-height: 50px;font-size: 30px;cursor: pointer;color: #000;}
+		#ol li:first-child{background: #000;color: #fff;}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="left">
+			<img src="left.png" alt="">
+		</div>
+		<div id="right">
+			<img src="right.png" alt="">
+		</div>
+		<ul id="ul">
+			<li><img src="1.jpg" alt=""></li>
+			<li><img src="2.jpg" alt=""></li>
+			<li><img src="3.jpg" alt=""></li>
+			<li><img src="4.jpg" alt=""></li>
+			<li><img src="5.jpg" alt=""></li>
+			<li><img src="6.jpg" alt=""></li>
+			<li><img src="1.jpg" alt=""></li>
+		</ul>
+		<ol id="ol">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+		</ol>
+	</div>
+	<script src="动画.js"></script>
+	<script>
+		var left = document.getElementById("left");
+		var right = document.getElementById("right");
+		var ul = document.getElementById("ul");
+		var imgs = ul.getElementsByTagName("li");
+		var lis = document.getElementById("ol").getElementsByTagName("li");
+		var box = document.getElementById("box");
+		//图片的轮回
+		var count = 0;
+		//划过的轮回
+		var num = 0;
+		var timer = null;
+		//ol的li划过
+		for(let i=0; i<lis.length; i++){
+			lis[i].onmouseover = function(){
+				for(var j=0; j<lis.length; j++){
+					lis[j].style.background = "#fff"
+					lis[j].style.color = "#000"
+				}
+				this.style.background = "#000"	
+				this.style.color = "#fff"	
+				one(ul,{left:-i*1000})
+				count = i;
+				num = i;		
+			}
+		}
+		//右箭头点击
+		right.onclick = function(){
+			if( count == imgs.length - 1){
+				ul.style.left = 0 + "px"
+				count = 0
+			}
+			count++;
+			one(ul,{left:-count*1000})
+
+			if( num < lis.length - 1 ){
+				num++;
+			}
+			else{
+				num = 0
+			}
+			for(var j=0; j<lis.length; j++){
+				lis[j].style.background = "#fff"
+				lis[j].style.color = "#000"
+			}
+			lis[num].style.background = "#000"
+			lis[num].style.color = "#fff"	
+			
+		}
+		//左箭头点击
+		left.onclick = function(){
+			if( count == 0){
+				ul.style.left = -( imgs.length - 1 )*1000 + "px"
+				count = imgs.length - 1;
+			}
+			count--;
+			one(ul,{left:-count * 1000})
+
+			if( num > 0 ){
+				num--;
+			}
+			else{
+				num = lis.length - 1;
+			}
+			for(var j=0; j<lis.length; j++){
+				lis[j].style.background = "#fff"
+				lis[j].style.color = "#000"
+			}
+			lis[num].style.background = "#000"		
+			lis[num].style.color = "#fff"	
+		}
+
+		timer = setInterval( right.onclick , 1500 )
+
+		box.onmouseover = function(){
+			clearInterval( timer )
+		}
+
+		box.onmouseout = function(){
+			timer = setInterval( right.onclick , 1500 )
+		}
+	</script>
+</body>
+</html>

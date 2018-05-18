@@ -1,0 +1,22 @@
+.lists{
+    width: 100%;
+    height: 2rem;
+    border-bottom: .01rem solid #ccc;
+    display: flex;
+    align-items: center;
+}
+.lists img{
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.lists p{
+    display: flex;
+    flex-direction: column;
+    margin-left: .15rem;
+}
+.lists p span {
+    font-size: .3rem;
+}
+.lists p b{
+    font-size: .3rem;
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;list-style: none}
+		#box{width: 300px;margin:20px auto;}
+		#ipt{width: 200px;height: 25px;}
+		#ul{width: 202px;border: 1px solid #999999;display: none;}
+		li{line-height: 25px;cursor: pointer;padding-left: 5px;}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<input type="text" id="ipt">
+		<ul id="ul"></ul>
+	</div>
+	<script>
+		var ul = document.getElementById("ul");
+		var arr = ["@163.com","@126.com","@qq.com","@weibo.com","@firefox.com"]
+		var ipt = document.getElementById("ipt")
+		var count = -1;
+
+		ipt.onkeyup = function(e){
+			var code = e.keyCode;
+			var val = ipt.value;
+			if( val != "" ){
+				var str = ""
+				var ind = val.indexOf("@")
+				if( ind == -1 ){//找不到
+					var qian = val
+					var hou = ""
+				}
+				else{
+					var qian = val.substr(0,ind)
+					var hou = val.substr(ind+1)
+				}
+				
+				for(var i=0; i<arr.length; i++){
+					if( arr[i].indexOf(hou) != -1 ){//找到了
+						str += "<li>"+qian+arr[i]+"</li>"
+					}		
+				}
+				ul.style.display = 'block'
+				ul.innerHTML = str
+			}
+			else{
+				ul.style.display = 'none'
+			}
+
+			
+			var lis = ul.getElementsByTagName("li")
+			if( code == 38 ){
+				count--;
+				if( count < 0 ){
+					count = lis.length - 1
+				}
+				lis[count].style.background = "#ffc"
+			}
+			if( code == 40 ){
+				count++;
+				if( count > lis.length - 1 ){
+					count = 0
+				}
+				lis[count].style.background = "#ffc"
+			}
+			if( code == 13 ){
+				ipt.value = lis[count].innerHTML
+				ul.style.display = "none"
+				count=-1;
+			}
+			for(let i=0; i<lis.length; i++){
+				lis[i].onmouseover = function(){
+					count=i
+					for(var j=0; j<lis.length; j++){
+						lis[j].style.background = "#fff"
+					}
+					this.style.background = "#ffc"
+				}
+				lis[i].onclick = function(){
+					ipt.value = this.innerHTML
+					ul.style.display = "none"
+				}
+			}
+		}
+
+		
+		
+	</script>
+</body>
+</html>

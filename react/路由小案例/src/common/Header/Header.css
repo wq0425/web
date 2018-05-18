@@ -1,0 +1,9 @@
+#Header{
+	width: 100%;
+    height:.88rem;
+    font-size: .3rem;
+    font-weight: bolder;
+    text-align: center;
+    line-height: .88rem;
+    border-bottom: .01rem solid #000;
+}

@@ -1,0 +1,620 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-size: .14rem;
+    font-weight: 400;
+    font-style: normal;
+    font-family: "微软雅黑";
+    text-size-adjust: 100%;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+html {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    font-size: 625%;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-size: 0.32rem;
+}
+
+img,
+div,
+body,
+html,
+ul,
+li,
+a {
+    -webkit-touch-callout: none;
+}
+
+input,
+button {
+    outline: 0;
+}
+
+button {
+    cursor: pointer;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #999;
+}
+
+//二级日历
+.date-mark {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    transition: all 0.5s;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: flex-end;
+    transform: translate3d(0, 100%, 0);
+}
+
+//遮罩大盒子
+.date-box {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 80%;
+    background: #fff;
+    bottom: 0;
+}
+
+//遮罩头部
+.date-header {
+    width: 100%;
+    padding: 0.1rem;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #999;
+    font-size: 0.24rem;
+    b {
+        display: inline-block;
+        padding: 0.1rem;
+        border: 1px solid #32B4A8;
+        color: #32B4A8;
+        border-radius: 5px;
+    }
+}
+
+//星期
+.week {
+    width: 100%;
+    height: 0.8rem;
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    li {
+        flex: 1;
+        text-align: center;
+        line-height: 0.8rem;
+        font-size: 0.32rem;
+        &:first-child {
+            color: #DFB0AA;
+        }
+        &:last-child {
+            color: #DFB0AA;
+        }
+    }
+}
+
+//日历页
+.date-section {
+    flex: 1;
+    overflow-y: scroll;
+    h3 {
+        width: 100%;
+        padding: 0.5rem;
+        text-align: center;
+        background: #FAFAFA;
+        font-size: 0.32rem;
+        color: #999;
+        top:0;
+        left:0;
+        position:sticky;
+    }
+    //单个日历
+    ol{
+        font-size: 0;
+    }
+    li{
+        display: inline-block;
+        width: calc(100% / 7);
+        height: 0.8rem;
+        text-align: center;
+        line-height: 0.8rem;
+        font-size: 0.3rem;
+    }
+    .disabled{
+        color:#ccc;
+    }
+    .start,.end{
+        background:green;
+        color:#fff
+    }
+    .line{
+        background:limegreen;
+        color:#fff 
+    }
+}
+
+//本月已经过去的时间字体颜色
+.old {
+    color: #999;
+}
+
+//点击日历后的颜色
+.active {
+    background: #2DB7A8;
+    color: #fff;
+}
+
+.center {
+    background: #66FF99;
+    color: #fff;
+}
+
+.wrap {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+.header,
+.footer {
+    width: 100%;
+    height: 0.9rem;
+    background: #F5F7F7;
+    display: flex;
+}
+
+//日历结束
+//头部
+.header {
+    border-bottom: 1px solid #ccc;
+}
+
+.header>a {
+    display: block;
+    width: 12%;
+    height: 100%;
+    text-align: center;
+    line-height: 0.9rem;
+    i {
+        font-size: 0.6rem;
+        color: #06C1AE;
+    }
+}
+
+.header .seek {
+    display: flex;
+    padding: 0.1rem;
+    flex: 1;
+}
+
+.header .seek .left {
+    position: relative;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    width: 26%;
+    height: 100%;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-right: none;
+    border-top-left-radius: 0.2rem;
+    border-bottom-left-radius: 0.2rem;
+    color: #999;
+    p {
+        line-height: 0.3rem;
+    }
+    &:after {
+        position: absolute;
+        content: "";
+        width: 0;
+        height: 0;
+        border: 0.12rem solid transparent;
+        border-top-color: #999;
+        top: 50%;
+        right: 0;
+        margin-top: -0.06rem;
+        z-index: 99;
+    }
+}
+
+.header .seek .right {
+    display: flex;
+    flex: 1;
+    position: relative;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-top-right-radius: 0.2rem;
+    border-bottom-right-radius: 0.2rem;
+    background: #fff;
+}
+
+.header .right label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: #999;
+    background: transparent;
+    i {
+        font-size: 0.4rem;
+        margin-right: 0.1rem;
+    }
+}
+
+.header .right input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 0.2rem;
+    outline: none;
+}
+
+//导航部分
+.nav {
+    ul {
+        width: 100%;
+        height: 100%;
+        height: 0.9rem;
+        display: flex;
+        padding: 0.2rem 0;
+        .nav-color {
+            color: #0DB373;
+        }
+        li {
+            cursor: pointer;
+            flex: 1;
+            font-size: 0.26rem;
+            color: #999;
+            text-align: center;
+            border-right: 1px solid #ccc;
+            position: relative;
+            line-height: 0.5rem;
+            &:after {
+                position: absolute;
+                top: 50%;
+                right: 0.1rem;
+                margin-top: -0.05rem;
+                content: "";
+                width: 0;
+                height: 0;
+                border: 0.1rem solid transparent;
+                border-top-color: #999;
+            }
+        }
+    }
+}
+
+//nav 城市渲染菜单
+.cityAll-list {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.5s;
+    transform: translateY(100%);
+    .city-tit {
+        width: 100%;
+        height: 0.88rem;
+        border-bottom: 1px solid #ccc;
+        display: flex;
+        padding: 0 0.2rem;
+        justify-content: space-between;
+        align-items: center;
+        a {
+            display: inline-block;
+            width: 10%;
+            height: 100%;
+            font-size: 0.32rem;
+            color: #2DB7A8;
+            text-align: center;
+            line-height: 0.88rem;
+        }
+        h2 {
+            font-size: 0.32rem;
+        }
+    }
+}
+
+//全城二级页的内容列表
+.city-section {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    #shenList{
+        display: inline-block;
+        vertical-align: top;
+        overflow: hidden;
+        width: 25%;
+        height: 100%;
+        position:relative;
+    }
+    .city-nav {
+        li {
+            width: 100%;
+            padding: 0.25rem 0;
+            text-align: center;
+            border-bottom: 1px solid #ccc;
+            font-size: 0.26rem;
+        }
+        .colorO {
+            background: #eee;
+        }
+    }
+    //子级菜单盒子
+    .city-child-box,.city-child-area {
+        vertical-align: top;
+        display:inline-block;
+        height: 100%;
+        width: 75%;
+        position:relative;
+    }
+    //单子级菜单
+    .city-child-boxAdd,.city-child-area {
+        background: #eee;
+        li {
+            width: 100%;
+            height: 1rem;
+            line-height:1rem;
+            border-bottom: 1px solid #999;
+            font-size: 0.26rem;
+        }
+        .colorT {
+            background: #ccc;
+        }
+    }
+    .city-child-boxEven {
+        background: #ccc;
+        li {
+            width: 100%;
+            padding: 0.25rem 0.2rem;
+            border-bottom: 1px solid #999;
+            font-size: 0.26rem;
+        }
+        .colorThs {
+            background: #999;
+        }
+    }
+}
+
+//二级都在NAV
+.screen-list {
+    position: absolute;
+    left: 0;
+    top: 1.82rem;
+    width: 100%;
+    height: calc(100% - 1.8rem);
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    transform: translateY(100%);
+    //添加颜色
+    .screen-color {
+        background: #0DB373;
+        color: #fff;
+        border-color: #0DB373;
+    }
+    //白色内容区域
+    .screen-section {
+        width: 100%;
+        height: 60%;
+        overflow-y: scroll;
+        background: #fff;
+        padding: 0 0.2rem;
+        .screen-tit {
+            width: 100%;
+            padding: 0.1rem 0;
+            font-size: 0.26rem;
+        }
+        .screen-box {
+            width: 100%;
+            padding: 0.1rem 0;
+            span {
+                display: inline-block;
+                text-align: center;
+                line-height: 0.48rem;
+                width: 1.5rem;
+                height: 0.5rem;
+                font-size: 0.26rem;
+                border-radius: 0.05rem;
+                border: 1px solid #ccc;
+                margin-right: 0.2rem;
+                margin-bottom: 0.1rem;
+            }
+        }
+    }
+    //功能按钮
+    .screen-btns {
+        background: #fff;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0.1rem 0.2rem;
+        border-top: 1px solid #ccc;
+        position: absolute;
+        top: 60%;
+        left: 0;
+        button {
+            width: 1rem;
+            height: 0.5rem;
+            border: none;
+            border-radius: 0.1rem;
+        }
+    }
+}
+
+//内容区域
+.main {
+    flex: 1;
+    overflow-y: auto;
+    //热点消息
+    h5 {
+        width: 100%;
+        height: 0.6rem;
+        background: #F0EFED;
+        border: 1px solid #ccc;
+        padding: 0.1rem 0.4rem;
+        color: #999;
+        display: flex;
+        justify-content: space-between;
+        font-weight: normal;
+        i {
+            font-size: 0.32rem;
+            cursor: pointer;
+        }
+    }
+}
+
+//section商品内容
+.main-section {
+    width: 100%;
+    dl {
+        width: 100%;
+        display: flex;
+        padding: 0.2rem;
+        border-bottom: 1px solid #ccc;
+        dt {
+            width: 2rem;
+            height: 2rem;
+            img {
+                width: 100%;
+                height: 100%;
+                font-size: 0;
+            }
+        }
+    }
+    dd {
+        padding: 0.06rem 0 0.06rem 0.2rem;
+        flex: 1;
+        ul {
+            width: 100%;
+            height: 100%;
+            h3 {
+                font-size: 0.28rem;
+            }
+            li {
+                margin-bottom: 0.04rem;
+                font-size: 0.24rem;
+            }
+        }
+    }
+    //商品信息部分
+    .message {
+        span {
+            b {
+                font-weight: normal;
+            }
+            color: #999;
+            &:first-child {
+                color: #FF9900;
+            }
+        }
+    }
+    .address {
+        color: #999;
+    }
+    .price {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        span {
+            color: #999;
+            &:first-child {
+                color: #06C1AE;
+                b {
+                    font-size: 0.32rem;
+                }
+            }
+            strong {
+                font-weight: normal;
+            }
+        }
+    }
+    .confirm {
+        width: 0.36rem;
+        height: 0.36rem;
+        border: 1px solid #F5716E;
+        text-align: center;
+        line-height: 0.32rem;
+        font-size: 0.26rem;
+        color: #F5716E;
+    }
+    //第一个推荐
+    .recommend {
+        dt {
+            position: relative;
+            span {
+                position: absolute;
+                top: 0.03rem;
+                left: 0;
+                width: 1rem;
+                height: 0.32rem;
+                text-align: center;
+                color: #fff;
+                line-height: 0.32rem;
+                background: #F5716E;
+            }
+            p {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 0.32rem;
+                background: #279FEA;
+                text-align: center;
+                line-height: 0.32rem;
+                color: #fff;
+            }
+        }
+    }
+    //第二个活动
+    .favorable {
+        dt {
+            position: relative;
+            p {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 0.32rem;
+                background: #F5716E;
+                text-align: center;
+                line-height: 0.32rem;
+                color: #fff;
+            }
+        }
+    }
+}

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			background: #a7ac8b;
+		}
+
+		#box {
+			width: 500px;
+			height: 800px;
+			margin: 50px auto;
+			border-radius: 10px;
+			background: #fff;
+			padding: 10px;
+			overflow: hidden;
+			overflow-y: scroll;
+		}
+
+		h3 {
+			line-height: 30px;
+			color: #666666;
+		}
+
+		#nam {
+			float: left;
+			border-radius: 5px;
+			border: 1px solid #666666;
+			outline: 0;
+			line-height: 25px;
+			margin-top: 3px;
+			padding-left: 5px;
+			width: 150px;
+		}
+
+		#top img:nth-child(2) {
+			opacity: 1;
+		}
+
+		#top img {
+			width: 30px;
+			height: 30px;
+			opacity: .5;
+			cursor: pointer;
+			float: left;
+			margin-left: 10px;
+		}
+
+		#text {
+			width: 480px;
+			height: 150px;
+			margin-top: 10px;
+			border-radius: 5px;
+			border: 1px solid #666666;
+			padding: 5px;
+			outline: 0
+		}
+
+		#down {
+			margin-top: 10px;
+			float: right;
+		}
+
+		#btn {
+			width: 100px;
+			line-height: 25px;
+			text-align: center;
+			border-radius: 5px;
+			border: 1px solid #82c023;
+			cursor: pointer;
+			outline: 0;
+			background: #82c023;
+			color: #fff;
+			font-size: 20px;
+			margin-left: 10px;
+		}
+
+		#spn {
+			font-size: 30px;
+			vertical-align: top;
+		}
+
+		#title {
+			width: 490px;
+			background: #e3eaec;
+			clear: both;
+			height: 25px;
+			border-radius: 5px;
+			padding-top: 10px;
+		}
+
+		#title p {
+			background: #fff;
+			width: 100px;
+			margin-left: 10px;
+			line-height: 25px;
+			text-align: center;
+			font-weight: bolder;
+			color: #666666;
+		}
+
+		#main dl {
+			width: 470px;
+			padding: 10px;
+			height: 70px;
+			position: relative;
+			border-bottom: 1px dashed #666666;
+		}
+
+		#main dl dt img {
+			width: 70px;
+			height: 70px;
+		}
+
+		#main dl dt,
+		#main dl dd {
+			float: left;
+		}
+
+		#main dl dd {
+			margin-left: 10px;
+		}
+
+		#main dl dd span {
+			font-weight: bold;
+			font-size: 20px;
+			width: 150px;
+			word-break: break-all;
+			display: inline-block;
+			height: 25px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		#main dl dd span:first-child {
+			color: #436595;
+
+		}
+
+		#main dl dd span:nth-child(2) {
+			color: #000;
+		}
+
+		#main dl dd p:last-child {
+			color: #879cb8;
+			font-weight: border;
+			font-size: 20px;
+		}
+
+		#main dl dd p {
+			line-height: 30px;
+		}
+
+		#main dl a {
+			position: absolute;
+			right: 10px;
+			top: 35px;
+			text-decoration: none;
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="box">
+		<h3>来，说说你在做什么，想什么</h3>
+		<div id="top">
+			<input type="text" id="nam">
+			<img src="1.jpg">
+			<img src="2.jpg">
+			<img src="3.jpg">
+			<img src="4.jpg">
+			<img src="5.jpg">
+			<img src="6.jpg">
+			<img src="7.jpg">
+			<img src="8.jpg">
+		</div>
+		<textarea id="text"></textarea>
+		<div id="down">
+			<p>
+				<span>还能输入</span>
+				<span id="spn">140</span>个字
+				<button id="btn">广播</button>
+			</p>
+		</div>
+		<div id="title">
+			<p>大家在说</p>
+		</div>
+		<div id="main"></div>
+	</div>
+	<script>
+		var nam = document.getElementById("nam");
+		var text = document.getElementById("text");
+		var spn = document.getElementById("spn")
+		var imgs = document.getElementById("top").getElementsByTagName("img");
+		var btn = document.getElementById("btn")
+		var main = document.getElementById("main")
+		var touxiang = "1.jpg";
+
+		for (var i = 0; i < imgs.length; i++) {
+			imgs[i].onclick = function () {
+				touxiang = this.getAttribute("src")
+				for (var j = 0; j < imgs.length; j++) {
+					imgs[j].style.opacity = .5
+				}
+				this.style.opacity = 1
+			}
+		}
+
+		text.onkeyup = function () {
+			var val = text.value.length;
+			if (val <= 140) {
+				spn.innerHTML = 140 - val
+				spn.style.color = "#000"
+				spn.previousSibling.innerHTML = "还能输入"
+			} else {
+				spn.innerHTML = -(140 - val)
+				spn.style.color = "red"
+				spn.previousSibling.innerHTML = "已超过"
+			}
+		}
+
+		btn.onclick = function () {
+			if (text.value == "") {
+				alert("评论不能为空")
+			} else if (nam.value == "") {
+				alert("用户名不能为空")
+			} else if (text.value.length > 140) {
+				alert("你评论的太多了")
+			} else {
+				var dl = document.createElement("dl");
+				var time = new Date();
+				var month = time.getMonth() + 1;
+				var day = time.getDate();
+				var hour = time.getHours();
+				var minute = time.getMinutes();
+				var str = xiao(month) + "月" + xiao(day) + "日 " + xiao(hour) + ":" + xiao(minute);
+				dl.innerHTML = "<dt><img src=" + touxiang + "></dt><dd><span>" + nam.value + ":</span> : <span>" + text.value +
+					"</span><p>" + str + "</p></dd><a href='javascript:;'>删除</a>"
+				main.insertBefore(dl, main.getElementsByTagName("dl")[0])
+				nam.value = ""
+				text.value = ""
+				spn.innerHTML = 140
+
+				var dls = main.getElementsByTagName("dl");
+				for (var i = 0; i < dls.length; i++) {
+					dls[i].onmouseover = function () {
+						var a = this.getElementsByTagName("a")[0];
+						a.style.display = "block"
+						this.style.background = "#eeeeee"
+						var that = this;
+						a.onclick = function () {
+							that.parentNode.removeChild(that)
+						}
+					}
+					dls[i].onmouseout = function () {
+						var a = this.getElementsByTagName("a")[0];
+						this.style.background = "#fff"
+						a.style.display = "none"
+					}
+				}
+			}
+		}
+
+		function xiao(n) {
+			return n > 10 ? n : "0" + n
+		}
+	</script>
+</body>
+
+</html>

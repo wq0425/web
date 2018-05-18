@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+body, html, #box {
+  width: 100%;
+  height: 100%; }
+
+#box {
+  font-size: 0.14rem; }
+
+header {
+  width: 100%;
+  height: 1.5rem;
+  background: url(../img/4.jpg);
+  background-size: 100%;
+  position: relative; }
+  header p {
+    position: absolute;
+    bottom: 0.1rem;
+    left: 0.2rem;
+    line-height: 0.5rem;
+    color: #fff;
+    font-size: 0.3rem; }
+
+section #ul li {
+  height: 0.7rem;
+  margin-left: 0.1rem;
+  display: flex;
+  border-bottom: 0.01rem solid #ccc;
+  line-height: 0.7rem; }
+  section #ul li .left {
+    margin-right: 0.4rem;
+    font-size: 0.18rem;
+    color: #666; }
+    section #ul li .left span {
+      display: inline-block;
+      height: 0.1rem;
+      width: 0.1rem;
+      border-radius: 50%;
+      background: #ccc;
+      margin-right: 0.1rem; }
+  section #ul li .center {
+    flex: 1;
+    font-size: 0.2rem;
+    position: relative; }
+    section #ul li .center .iconfont {
+      position: absolute;
+      color: #23aef1;
+      right: 0.1rem;
+      font-size: 0.2rem; }
+  section #ul li .right {
+    width: 0.9rem;
+    height: 0.5rem;
+    border-left: 0.01rem solid #ccc;
+    padding: 0.1rem 0;
+    text-align: center;
+    font-size: 0.15rem;
+    color: #23aef1;
+    line-height: 0.3rem; }
+    section #ul li .right .iconfont {
+      font-size: 0.2rem; }
+
+/*# sourceMappingURL=style.css.map */

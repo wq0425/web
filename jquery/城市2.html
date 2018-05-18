@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;}
+		#box{width: 350px;height: 700px;border: 1px solid #e4e4e4;margin:10px auto;}
+		h3{width: 100%;height: 30px;background: #e4e4e4;line-height: 30px;}
+		#one span{height: 30px;display: inline-block;width: 60px;line-height: 25px;cursor: pointer;text-align: center;margin-right: 5px;}
+		#two span{line-height: 30px;cursor: pointer;padding: 4px;}
+		#three span{display: block;cursor: pointer;}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<h3>热门城市</h3>
+		<div id="one"></div>
+		<h3>更多</h3>
+		<div id="two"></div>
+		<h3 id="hh"></h3>
+		<div id="three"></div>
+	</div>
+	<script src="data1.js"></script>
+	<script src="jquery-1.8.3.min.js"></script>
+	<script>
+		var hotC = data.hotcitylist;
+		var city = data.citylist;
+		$.each(hotC,function(i,val){
+			var s = $("<span>"+val.name+"</span>")
+			$("#one").append(s)
+		})
+		$.each(city,function(i,val){
+			var s = $("<span>"+i+"</span>")
+			$("#two").append(s)
+		})
+		$("#two span").on("click",function(){
+			$("#three").html("")
+			var txt = $(this).text()
+			$.each(city,function(i,val){
+				if( txt == i ){
+					$.each(val,function(i,vall){
+						$.each(vall,function(i,val1){
+							var s = $("<span>"+i+"</span>")
+							$("#three").append(s)
+						})
+					})
+				}
+			})
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="icon/iconfont.css"/>
+	<script src="load/swiper-3.4.2.min.js"></script>
+	<script src="load/iscroll.js"></script>
+	<link rel="stylesheet" href="load/swiper-3.4.2.min.css"/>
+	<meta name="viewport" content="width=device-width,maximum-scale=1.0,minimum-scale=1.0,initial-scale=1.0,user-scalable=no">
+	<meta name="format-detection" content="telephone=no,email=no,adress=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1.0">
+	<link rel="stylesheet" href="css/style.css"/>
+	<script>
+		document.documentElement.style.fontSize = window.innerWidth / 375 * 50 + "px"
+	</script>
+</head>
+<body>
+	<div class="box">
+		<section>
+			<div class="nav">
+				<p>
+					<b>JD</b>
+					<i class="iconfont">&#xe729;</i>
+					<input type="text" placeholder="plus会员狂欢日，火热开启京东双11">
+				</p>
+				<a href="javascript:;">登录</a>
+			</div>
+			<div class="banner">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<img src="img/2.jpg" alt="">
+					</div>
+					<div class="swiper-slide">
+						<img src="img/1.jpg" alt="">
+					</div>
+					<div class="swiper-slide">
+						<img src="img/3.jpg" alt="">
+					</div>
+					<div class="swiper-slide">
+						<img src="img/4.jpg" alt="">
+					</div>
+					<div class="swiper-slide">
+						<img src="img/5.jpg" alt="">
+					</div>
+					<div class="swiper-slide">
+						<img src="img/6.jpg" alt="">
+					</div>
+					<div class="swiper-slide">
+						<img src="img/7.jpg" alt="">
+					</div>
+					<div class="swiper-slide">
+						<img src="img/8.jpg" alt="">
+					</div>
+				</div>
+				<div class="ol"></div>
+			</div>
+			<div class="ss">
+				<img src="img/banner.jpg" alt="">
+			</div>
+			<div class="icon">
+				<a href="#"><img src="img/1.png" alt=""><span>京东超市</span></a>
+				<a href="#"><img src="img/1.png" alt=""><span>全球购</span></a>
+				<a href="#"><img src="img/2.png" alt=""><span>服装城</span></a>
+				<a href="#"><img src="img/3.png" alt=""><span>京东生鲜</span></a>
+				<a href="#"><img src="img/4.png" alt=""><span>京东到家</span></a>
+				<a href="#"><img src="img/5.png" alt=""><span>充值缴费</span></a>
+				<a href="#"><img src="img/6.png" alt=""><span>领京豆</span></a>
+				<a href="#"><img src="img/7.png" alt=""><span>领券</span></a>
+				<a href="#"><img src="img/8.png" alt=""><span>赚钱</span></a>
+				<a href="#"><img src="img/9.png" alt=""><span>PLUS会员</span></a>
+			</div>
+			<div class="ss">
+				<img src="img/banner1.jpg" alt="">
+			</div>
+			<div class="pics">
+				<div class="dl">
+					<p>
+						<img src="img/11.jpg" alt="">
+						<b>￥69.9</b>
+						<s>￥169</s>
+					</p>
+					<p>
+						<img src="img/22.jpg" alt="">
+						<b>￥37.9</b>
+						<s>￥79.99</s>
+					</p>
+					<p>
+						<img src="img/33.jpg" alt="">
+						<b>￥6980</b>
+						<s>￥14800</s>
+					</p>
+					<p>
+						<img src="img/44.jpg" alt="">
+						<b>￥799</b>
+						<s>￥1999</s>
+					</p>
+					<p>
+						<img src="img/11.jpg" alt="">
+						<b>￥69.9</b>
+						<s>￥169</s>
+					</p>
+					<p>
+						<img src="img/22.jpg" alt="">
+						<b>￥37.9</b>
+						<s>￥79.99</s>
+					</p>
+					<p>
+						<img src="img/33.jpg" alt="">
+						<b>￥6980</b>
+						<s>￥14800</s>
+					</p>
+					<p>
+						<img src="img/44.jpg" alt="">
+						<b>￥799</b>
+						<s>￥1999</s>
+					</p>
+				</div>
+			</div>
+		</section>
+		<footer>
+				<a href="javascript:;" class="bg"><i class="iconfont">&#xe648;</i>首页</a>
+				<a href="javascript:;"><i class="iconfont">&#xe6f9;</i>分类</a>
+				<a href="javascript:;"><i class="iconfont">&#xe715;</i>发现</a>
+				<a href="javascript:;"><i class="iconfont">&#xe63c;</i>购物车</a>
+				<a href="javascript:;"><i class="iconfont">&#xe6cc;</i>我的</a>
+		</footer>
+	<script>
+		var aa = document.querySelector("footer").getElementsByTagName("a")
+		var mySwiper = new Swiper(".banner",{
+			autoplay:1000,
+			loop:true,
+			pagination:'.ol'
+		})
+		var myscroll = new IScroll(".pics",{
+			scrollX:true,
+			scrollY:false
+		})
+		var sec = document.querySelector("section")
+		sec.onscroll = function(){
+			var top = sec.scrollTop
+			if( top > 10 ){
+				document.querySelector(".nav").style.background = "red"
+			}
+			else{
+				document.querySelector(".nav").style.background = ""
+			}
+		}
+
+		for(var i=0; i<aa.length; i++){
+			aa[i].onclick = function(){
+				for(var j=0; j<aa.length; j++){
+					aa[j].className = ""
+				}
+				this.className = "bg"
+			}
+		}
+	</script>
+</body>
+</html>

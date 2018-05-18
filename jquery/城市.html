@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;list-style: none;}
+		#box{width: 574px;height: 600px;border: 1px solid #000;margin:50px auto;border-top: 0;}
+		#list li{float: left;width: 80px; text-align: center;line-height: 30px;border: 1px solid #000;cursor: pointer;}
+		#list li.bg{background: #ffc;}
+		#wrap span{display: inline-block;width: 80px;text-align: center;line-height: 25px;}
+		h3{margin-left: 10px;line-height: 35px;}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul id="list"></ul>
+		<div id="wrap"></div>
+	</div>
+	<script src="data.js"></script>
+	<script src="jquery-1.8.3.min.js"></script>
+	<script>
+		$.each(data.city,function(i,val){
+			$.each(val,function(key,val){
+				if( key == "hotlist"){
+					key = "热门"
+				}
+				var newLi = $("<li>"+key+"</li>")
+				$("#list").append(newLi)
+				$("#list li").first().addClass("bg")
+			})
+		})
+		function hot(){
+			$.each(data.city[0].hotlist,function(i,val){
+				var newSp = $("<span>"+val.display+"</span>")
+				$("#wrap").append(newSp)
+			})
+		}
+		hot()
+		$("#list li").on("click",function(){
+			$("#wrap").html('')
+			var txt = $(this).text()
+			var ind = $(this).index()
+			$.each(txt,function(i,val){
+				if( ind != 0 ){
+					var newH = $("<h3>"+val+"</h3>")
+					$("#wrap").append(newH)
+					$.each(data.city[ind][txt],function(i,vall){
+						if( vall.group == val ){
+							var newSp = $("<span>"+vall.display+"</span>")
+							$("#wrap").append(newSp)
+						}
+					})
+				}
+			})
+			if( ind == 0 ){
+				hot()
+			}
+			$(this).addClass("bg").siblings().removeClass("bg")
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+在HTML5 WebStorage介绍了html5本地存储的Local Storage和Session Storage，这两个是以键值对存储的解决方案，存储少量数据结构很有用，但是对于大量结构化数据就无能为力了，灵活大不够强大。
+
+web sql 本地数据库
+
+	HTML5本地存储之Database Storage应用介绍：实际上，除了sessionStorage和localStorage外，HTML5还支持通过本地数据库进行本地数据存储，HTML5采用的是"SQLLite"这种文件型数据库
+
+三个核心方法
+
+1、openDatabase：这个方法使用现有数据库或创建新数据库   创建数据库对象。
+
+2、transaction：这个方法允许我们根据情况执行事务或回滚。
+
+3、executeSql：这个方法用于执行真实的SQL查询。
+
+
+一、创建数据对象
+
+语法：openDatabase(databasename,version,description,size,callback) 
+功能：打开一个已经存在的数据库，如果数据库不存在，它还可以创建数据库
+返回：返回一个数据库对象
+参数：
+	1，数据库名称。
+	2，版本号 目前为1.0,不管他，写死就OK。
+	3，对数据库的描述。
+	4，设置数据的大小。      单位k 
+	5，回调函数(可省略)。
+备注：
+	初次调用时创建数据库，以后就是建立连接了。
+	创建的数据库就存在本地，路径如下：
+	C:\Users\Administrator\AppData\Local\Google\Chrome\User Data\Default\databases\http_localhost_* 。
+	创建的是一个sqllite数据库，可以用SQLiteSpy打开文件，可以看到里面的数据。
+
+二、使用数据库访问对象执行事务处理 
+
+语法：transaction(querysql, errorCallback, successCallback); 
+功能：执行事务处理 
+参数：
+	querysql：事务回调函数，其中可以执行 SQL 语句。在这个函数中，执行访问数据库的具体操作（必选）
+	errorCallback：出错回调函数。（可选）
+	successCallback：执行成功回调函数。（可选）
+
+三、通过executeSql方法执行查询 （SQL语句）
+语法：executeSql(sqlQuery,[value1,value2..],successHandler,errorHandler) 
+功能：执行SQL语句（查询）
+参数：
+	sqlQuery：需要具体执行的sql语句，可以是create、select、update、delete，insert
+
+
+	[value1,value2..]：sql语句中所有使用到的参数的数组，在executeSql方法中，将sql语句中所要使用的参数先用“?”代替，然后依次将这些参数组成数组放在第二个参数中； 
+
+
+	successHandler：执行成功是调用的回调函数，通过该函数可以获得查询结果集； 
+	errorHandler：执行失败时调用的回调函数； 
+
+3.1 创建表
+	语句：
+	“create table if not exists 数据表名(字段1 数据类型,字段2 数据类型,……)”
+
+	 数据类型：
+		UNIQUE  唯一的索引
+		TEXT        字符串
+		INTEGER	整数
+
+	示例：
+	executeSql("create table if not exists 数据表名(字段1 数据类型,字段2 数据类型)",[],successfn,errorfn)
+		UNIQUE  		唯一的索引
+		TEXT        		字符串
+		
+
+3.2添加数据
+	语句：insert into 数据表名(字段名1, 字段名2)    values(?, ?)
+
+	示例：
+	executeSql("insert into stu (id, name) values(?, ?)",[id, '徐明祥'],successfn,errorfn)
+
+3.3查询数据
+	语句：select * from 表名
+
+	示例：
+	executeSql("select * from stu",[],function(tx,result){},errorfn）
+特别提醒
+	上面代码中执行成功的回调函数有一参数result。
+	result：查询出来的数据集。其数据类型为 SQLResultSet 
+	其中最重要的属性—SQLResultSetRowList 类型的 rows 是数据集的“行” 。 
+		rows 有两个属性：length、item 。
+		故，获取查询结果的第一行列名为name的值 ：result.rows.item(0).name
+
+3.4更新数据
+	语句：update 数据表名 set 字段名= ? where 字段名= ?
+	示例：
+	executeSql("update stu set name = ? where id= ?"[id, '徐明祥'],successfn,errorfn)
+3.5删除数据
+	语句：delete from 数据表名 where 字段名= ?
+	示例：
+	executeSql("delete from stu where id= ?",[id],successfn,errorfn)
+3.6删除数据表
+	语句：drop table 数据表名
+	示例：
+	tx.executeSql('drop table stu');
+
+
+案例：通讯录管理
+http://www.jb51.net/html5/70032.html
+
+
+
+

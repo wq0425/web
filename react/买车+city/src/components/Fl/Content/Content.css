@@ -1,0 +1,24 @@
+.Content div{
+    padding: 0 .2rem;
+}
+.Content div a{
+    width: 100%;
+    height: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: .1rem;
+    background: skyblue;
+    margin: .1rem 0;
+}
+.Content div a b,.Content div a span{
+    display: flex;
+    padding-left: .2rem;
+    align-items: center;
+    width: 100%;
+    height: .6rem;
+}
+.Content div a span{
+    background: #fff;
+    border-radius: .1rem;
+    border: .01rem solid skyblue;
+}

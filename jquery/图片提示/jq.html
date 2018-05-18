@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;}
+		#box{width: 1500px;margin:200px auto;position: relative;}
+		img{width: 500px;float: left;height: 300px;}
+		.wrap{display: none;position: absolute;}
+		.img{width: 250px;height: 150px;}
+		h3{background: #fff;}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<img src="1.jpg" alt="" title="图片一">
+		<img src="2.jpg" alt="" title="图片二">
+		<img src="3.jpg" alt="" title="图片三">
+		<img src="4.jpg" alt="" title="图片四">
+		<img src="5.jpg" alt="" title="图片五">
+		<img src="6.jpg" alt="" title="图片六">
+		<div class="wrap">
+			<img src="" alt="" class="img">
+			<h3></h3>
+		</div>
+	</div>
+	<script src="jquery-1.8.3.min.js"></script>
+	<script>
+		$("img").on("mousemove",function(e){
+			var x = e.clientX - 200
+			var y = e.clientY - 200
+			var txt = $(this).prop("title")
+			var src = $(this).prop("src")
+			$(".wrap").css("display","block")
+			$(".img").prop("src",src)
+			$(".wrap").css({"left":x,"top":y})
+			$(".wrap h3").text(txt)
+		})
+		$("#box").on("mouseleave",function(){
+			$(".wrap").css("display","none")
+		})
+	</script>
+</body>
+</html>

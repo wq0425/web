@@ -1,0 +1,212 @@
+ 					基本包装类型
+			
+为了方便操作基本类型值，ES还提供了3个特殊的引用类型：Boolean、Number和String。
+
+分析思考：
+
+基本类型值不是对象，因而从逻辑上讲它们不应该有方法(但实际是有的)。
+
+例：
+	var s1 = "some text";
+	var s2 = s1.substring(2);
+
+
+说明：
+
+事实上，每次读取一个基本类型值的时候，后台就会创建一个对应的基本包装类型的对象，从而让我们能够调用一些方法来操作这些数据。为了让我们实现这种直观的操作，后台已经自动完成了一系列的处理。
+
+以上面的例子为例：
+
+	1)创建String类型的一个实例    var s1 = new String("some text");
+	2)在实例上调用指定的方法	  var s2 = s1.substring(2);
+	3)销毁这个实例。			  s1 = null;
+		
+引用类型与基本包装类型的主要区别：对象的生存期。
+
+使用new操作符创建的引用类型的实例，在执行流离开当前作用域之前都一直保存在内存中。而自动创建的基本包装类型的对象，则只存在于一行代码的执行瞬间，然后立即被销毁。
+
+	例：
+	var s1 = "some text";
+	s1.color = "red";
+	console.log(s1.color);  //undefined
+
+需要注意：
+
+	使用new调用基本包装类型构造函数，与直接调用同名的转型函数是不一样的。
+
+	例：
+
+	var value = "25";
+	var number = Number(value);   //转型函数
+	console.log(typeof number);	  //number
+
+	var obj = new Number(value);  //构造函数
+	console.log(typeof obj);      //object
+
+	
+
+					第11单元 字符串String
+
+1.创建方式
+			
+	String类型是字符串的对象包装类型，可以使用String构造函数创建。
+
+	例：
+
+	var strObj = new String("Hello World");
+
+2.方法
+
+* 继承的toLocaleString()、toString和valueof()方法，都返回对象所表示的基本字符串值。
+		
+	String类型的每一个实例都有一个length属性，表示字符串中包含了多少了字符。
+
+	例：
+
+	var str = "hello world";
+	console.log(str.length);
+
+* 字符方法
+
+	$: charAt() 以单字符串的形式返回给定位置的那个字符
+
+	$: charCodeAt() 以单字符串的形式返回给定位置的那个字符编码
+
+	这两个方法都接收一个参数，即基于0的字符位置(下标)。
+
+	例：
+	var str = "Hello world";
+	console.log(str.charAt(1)); //e
+	console.log(str.charCodeAt(1)); //101  “e”的字符编码
+
+	需要了解：String构造函数本身还有一个静态方法。
+
+	$: fromCharCode() 方法
+
+	接受一个或多个字符编码，然后将他们转换成一个字符串。
+
+	例：
+	console.log(String.fromCharCode(104,101,108,108,111)); //hello
+
+* 字符串操作方法
+
+	$: concat() 用于将一个或多个字符串拼接起来，返回拼接得到的新字符串。
+
+	例：
+	var str = "hello ";
+	var newStr = str.concat("world","!");
+	console.log(newStr); //"hello world!"
+	console.log(str); //不改变原字符串
+
+	$:  ES还提供了三个基于子字符串创建新字符串的方法:slice()、substr() 和 substring()。这三个方法都会返回被操作字符串的一个子字符串，而且都接受一或两个参数。第一个参数指定子字符串的开始位置，第二个参数有所不同。具体来说就是，slice()和substring()的第二个参数指定的是子字符串最后一个字符后面的位置。而substr()的第二个参数指的是返回的字符的个数。如果没有给这些方法传第二个参数，则将字符串的末尾作为结束位置。都不会修改字符串本身(子字符串)。
+
+	例：
+	var str = "hello world";
+	console.log(str.slice(3));    //"lo world"
+	console.log(str.substring(3));  //"lo world"
+	console.log(str.substr(3));    //"lo world"
+	console.log(str.slice(3,7));   //"lo w"
+	console.log(str.substring(3,7)); //"lo w"
+	console.log(str.substr(3,7));  //"lo worl"
+		
+	在传递给这些方法的参数是负数的情况时，他们的行为就不相同了。
+
+	例：
+	var str = "hello world";
+	console.log(str.slice(-3));    //"rld"  
+	console.log(str.substring(-3);  //"hello world"  此方法的参数是负数都转换为0
+	console.log(str.substr(-3));    //"rld"
+	console.log(str.slice(3,-4));   //"lo w"
+	console.log(str.substring(3,-4)); //"hel"  此方法会将较小的数作为开始位置
+	console.log(str.substr(3,-4));  //""(空字符串)
+
+* 字符串位置方法
+
+	$: indexof()
+
+	$: lastIndexof()
+
+	例：
+	var str = "hello world";
+	console.log(str.indexof("o"));   //4
+	console.log(str.lastIndexof("o")); //7
+	console.log(str.indexof("o",6));  //7
+	console.log(str.lastIndexof("o",6)); //4
+
+	如果检测不到返回-1
+
+* trim()方法  此方法会创建一个字符串副本，删除前置以及后缀的所有空格，然后返回结果。
+	
+	trim()：
+	var str = "   hello world   ";
+	function trim(str){
+		var newStr = str.replace(/^\s+|\s+$/g,"")
+		return newStr;
+	}
+	var newStr = trim(str);
+	console.log(newStr);
+
+	例：
+	var str = "  hello world   ";
+	var newStr = str.trim();
+	console.log(newStr);  //"hello world"
+	console.log(str);     //"  hello world   "
+
+* 字符串大小写转换方法
+
+	$: toLowerCase()   转小写
+
+	$: toLocaleLowerCase()  根据特定地区的语言转小写
+
+	$: toUpperCase()   转大写
+
+	$: toLocaleUpperCase()  根据特定地区转大写
+
+
+	例：
+	var str = "hello world";
+	console.log(str.toUpperCase());    //"HELLO WORLD"
+	console.log(str.toLocaleUpperCase());  //"HELLO WORLD"
+	console.log(str.toLowerCase());   //"hello world"
+	console.log(str.toLocaleLowerCase());  //"hello world"
+
+	如果不知道自己的代码将在哪种语言环境中运行的情况下，还是使用针对地区的方法更稳妥一些。
+
+* 字符串的匹配模式方法
+
+	$: replace() 为了简化替换子字符串的操作。
+
+	该方法接受两个参数：1)可以是一个RegExp对象或者一个字符串 2)可以是一个字符串或者函数
+
+	例：
+	var text = "cat,bat,sat,fat";
+	var result = text.replace("at","ond");
+	console.log(result);  //cond,bat,sat,fat
+	result = text.replace(/at/g,"ond");
+	console.log(result);  //cond,bond,sond,fond
+	result = text.replace(/(.at)/g,"word($1)");
+	console.log(result); //word(cat),word(bat),word(sat),word(fat)
+
+	$: split() 以指定的分隔符将一个字符串分割成多个子字符串，并将结果放在一个数组
+
+	该方法的分隔符可以使字符串也可以是一个RegExp对象。可以接受可选的第两个参数，即指定数组的大小。
+
+	例：
+	var colors = "red,blue,green,yellow";
+	var colors1 = colors.split(",");
+	var colors1 = colors.split(",",2);
+
+	var Es = colors.split("e");
+	console.log(Es);  // ["r","d,blu",",gr","","n,y","llow"]
+	console.log(Es.length-1);
+
+* localeCompare()方法
+
+	该方法用于比较两个字符串，并返回值，大多数返回 1 0 -1(具体的值要视实现而定)。
+
+	例：
+	var str = "yellow";
+	console.log(str.localeCompare("brick"));  //1
+	console.log(str.localeCompare("yellow"));  //0
+	console.log(str.localeCompare("y"));  //1
+	console.log(str.localeCompare("zoo"));  //-1

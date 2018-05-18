@@ -1,0 +1,16 @@
+PATH£º
+C:\Program Files\nodejs\;
+C:\Program Files\nodejs\node_modules\npm;
+C:\Program Files\nodejs\node_modules\npm\node_modules
+
+NODE_PATH£º
+C:\Program Files\nodejs\node_modules\npm\node_modules
+
+È«¾ÖÂ·¾¶£º
+C:\Program Files\nodejs\node_modules\npm\node_modules
+
+
+
+
+
+

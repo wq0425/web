@@ -1,0 +1,346 @@
+
+HTML5 现在已经不是 SGML 的子集，主要是关于图像，位置，存储，多任务等功能的增加。
+绘画 canvas
+用于媒介回放的 video 和 audio 元素
+本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失；
+sessionStorage 的数据在浏览器关闭后自动删除
+语意化更好的内容元素，比如 article、footer、header、nav、section
+表单控件，calendar、date、time、email、url、search
+新的技术webworker, websockt, Geolocation
+移除的元素
+纯表现的元素：basefont，big，center，font, s，strike，tt，u；
+对可用性产生负面影响的元素：frame，frameset，noframes；
+支持HTML5新标签：
+IE8/IE7/IE6支持通过document.createElement方法产生的标签，
+可以利用这一特性让这些浏览器支持HTML5新标签，
+浏览器支持新标签后，还需要添加标签默认的样式：
+5.请描述一下 cookies，sessionStorage 和 localStorage 的区别？
+
+cookie在浏览器和服务器间来回传递。 sessionStorage和localStorage不会
+sessionStorage和localStorage的存储空间更大；
+sessionStorage和localStorage有更多丰富易用的接口；
+sessionStorage和localStorage各自独立的存储空间；
+6.如何实现浏览器内多个标签页之间的通信?
+
+调用localstorge、cookies等本地存储方式
+7.HTML5 为什么只需要写 !DOCTYPE HTML？
+
+HTML5 不基于 SGML，因此不需要对DTD进行引用，但是需要doctype来规范浏览器的行为（让浏览器按照它们应该的方式来运行）；而HTML4.01基于SGML,所以需要对DTD进行引用，才能告知浏览器文档所使用的文档类型。
+8.Doctype作用？标准模式与兼容模式各有什么区别?
+
+!DOCTYPE声明位于位于HTML文档中的第一行，处于html 标签之前。告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。
+标准模式的排版 和JS运作模式都是以该浏览器支持的最高标准运行。在兼容模式中，页面以宽松的向后兼容的方式显示,模拟老式浏览器的行为以防止站点无法工作。
+9.Doctype? 严格模式与混杂模式-如何触发这两种模式，区分它们有何意义?
+用于声明文档使用那种规范（html/Xhtml）一般为 严格 过度 基于框架的html文档。
+加入XMl声明可触发，解析方式更改为IE5.5 拥有IE5.5的Bug。
+
+10.请描述一下 cookies，sessionStorage 和 localStorage 的区别？
+
+cookie在浏览器和服务器间来回传递。 sessionStorage和localStorage不会
+sessionStorage和localStorage的存储空间更大；
+sessionStorage和localStorage有更多丰富易用的接口；
+sessionStorage和localStorage各自独立的存储空间；
+11.如何实现浏览器内多个标签页之间的通信?
+
+调用localstorge、cookies等本地存储方式
+
+
+CSS相关问题
+
+1.CSS实现垂直水平居中
+
+一道经典的问题，实现方法有很多种，以下是其中一种实现：
+HTML结构：
+
+<div class="wrapper">
+    <div class="content"></div>
+</div>
+
+CSS：
+
+.wrapper{position:relative;}
+    .content{
+        background-color:#6699FF;
+        width:200px;
+        height:200px;
+        position: absolute;        //父元素需要相对定位
+        top: 50%;
+        left: 50%;
+        margin-top:-100px ;   //二分之一的height，width
+        margin-left: -100px;
+    }
+
+
+2.display有哪些值？说明他们的作用。
+
+block         块类型。默认宽度为父元素宽度，可设置宽高，换行显示。
+  none          缺省值。象行内元素类型一样显示。
+  inline        行内元素类型。默认宽度为内容宽度，不可设置宽高，同行显示。
+  inline-block  默认宽度为内容宽度，可以设置宽高，同行显示。
+  list-item     象块类型元素一样显示，并添加样式列表标记。
+  table         此元素会作为块级表格来显示。
+  inherit       规定应该从父元素继承 display 属性的值。
+
+3.行内元素有哪些?块级元素有哪些?CSS的盒模型?
+块级元素：div,p,h1,form,ul,li;
+行内元素 : span>,a,label,input,img,strong,em;
+CSS盒模型:内容，border ,margin，padding
+
+4.CSS引入的方式有哪些? link和@import的区别是?
+内联 内嵌 外链 导入
+区别 ：同时加载
+前者无兼容性，后者CSS2.1以下浏览器不支持
+Link 支持使用javascript改变样式，后者不可
+
+5.CSS选择符有哪些?哪些属性可以继承?优先级算法如何计算?内联和important哪个优先级高?
+标签选择符 类选择符 id选择符
+继承不如指定 Id>class>标签选择
+后者优先级高
+
+6.CSS清除浮动的几种方法（至少两种）
+
+使用带clear属性的空元素
+使用CSS的overflow属性；
+使用CSS的:after伪元素；
+使用邻接元素处理；
+7.CSS居中（包括水平居中和垂直居中）
+
+内联元素居中方案
+水平居中设置：
+1.行内元素
+
+设置 text-align:center；
+2.Flex布局
+
+设置display:flex;justify-content:center;(灵活运用,支持Chroime，Firefox，IE9+)
+垂直居中设置：
+1.父元素高度确定的单行文本（内联元素）
+
+设置 height = line-height；
+2.父元素高度确定的多行文本（内联元素）
+
+a:插入 table （插入方法和水平居中一样），然后设置 vertical-align:middle；
+b:先设置 display:table-cell 再设置 vertical-align:middle；
+块级元素居中方案
+水平居中设置：
+1.定宽块状元素
+设置 左右 margin 值为 auto；
+
+2.不定宽块状元素
+
+a:在元素外加入 table 标签（完整的，包括 table、tbody、tr、td），该元素写在 td 内，然后设置 margin 的值为 auto；
+b:给该元素设置 displa:inine 方法；
+c:父元素设置 position:relative 和 left:50%，子元素设置 position:relative 和 left:50%；
+垂直居中设置：
+
+使用position:absolute（fixed）,设置left、top、margin-left、margin-top的属性;
+利用position:fixed（absolute）属性，margin:auto这个必须不要忘记了;
+利用display:table-cell属性使内容垂直居中;
+使用css3的新属性transform:translate(x,y)属性;
+使用:before元素;
+8.在书写高效 CSS 时会有哪些问题需要考虑？
+reset。参照上题“描述下 “reset” CSS 文件的作用和使用它的好处”的答案。
+规范命名。尤其对于没有语义化的html标签，例如div，所赋予的class值要特别注意。
+抽取可重用的部件，注意层叠样式表的“优先级”。
+
+
+
+JS相关问题
+
+1.谈一谈JavaScript作用域链
+当执行一段JavaScript代码（全局代码或函数）时，JavaScript引擎会创建为其创建一个作用域又称为执行上下文（Execution Context），在页面加载后会首先创建一个全局的作用域，然后每执行一个函数，会建立一个对应的作用域，从而形成了一条作用域链。每个作用域都有一条对应的作用域链，链头是全局作用域，链尾是当前函数作用域。
+
+作用域链的作用是用于解析标识符，当函数被创建时（不是执行），会将this、arguments、命名参数和该函数中的所有局部变量添加到该当前作用域中，当JavaScript需要查找变量X的时候（这个过程称为变量解析），它首先会从作用域链中的链尾也就是当前作用域进行查找是否有X属性，如果没有找到就顺着作用域链继续查找，直到查找到链头，也就是全局作用域链，仍未找到该变量的话，就认为这段代码的作用域链上不存在x变量，并抛出一个引用错误（ReferenceError）的异常。
+
+
+
+2.如何理解JavaScript原型链
+JavaScript中的每个对象都有一个prototype属性，我们称之为原型，而原型的值也是一个对象，因此它也有自己的原型，这样就串联起来了一条原型链，原型链的链头是object,它的prototype比较特殊，值为null。
+
+原型链的作用是用于对象继承，函数A的原型属性(prototype property)是一个对象，当这个函数被用作构造函数来创建实例时，该函数的原型属性将被作为原型赋值给所有对象实例，比如我们新建一个数组，数组的方法便从数组的原型上继承而来。
+
+当访问对象的一个属性时, 首先查找对象本身, 找到则返回; 若未找到, 则继续查找其原型对象的属性(如果还找不到实际上还会沿着原型链向上查找, 直至到根). 只要没有被覆盖的话, 对象原型的属性就能在所有的实例中找到，若整个原型链未找到则返回undefined
+
+
+
+3.JavaScript如何实现继承？
+构造继承
+原型继承
+实例继承
+拷贝继承
+原型prototype机制或apply和call方法去实现较简单，建议使用构造函数与原型混合方式。
+        function Parent(){
+            this.name = 'wang';
+        }
+
+        function Child(){
+            this.age = 28;
+        }
+        Child.prototype = new Parent();//继承了Parent，通过原型
+        var demo = new Child();
+        alert(demo.age);
+        alert(demo.name);//得到被继承的属性
+
+
+4.JavaScript的typeof返回哪些数据类型
+
+Ｏbject number function boolean underfind;
+5.例举3种强制类型转换和2种隐式类型转换?
+
+强制（parseInt,parseFloat,number）隐式（== – ===）；
+6.split() join() 的区别
+
+前者是切割成数组的形式，后者是将数组转换成字符串
+
+7.数组方法pop() push() unshift() shift()
+
+Push()尾部添加 pop()尾部删除
+Unshift()头部添加 shift()头部删除
+
+8.IE和DOM事件流的区别
+执行顺序不一样、
+参数不一样
+事件加不加on
+this指向问题
+
+9.ajax请求的时候get 和post方式的区别
+一个在url后面 一个放在虚拟载体里面
+有大小限制
+安全问题
+应用不同 一个是论坛等只需要请求的，一个是类似修改密码的
+
+10.IE和标准下有哪些兼容性的写法
+Var ev = ev || window.event
+document.documentElement.clientWidth || document.body.clientWidth
+Var target = ev.srcElement||ev.target
+
+11.ajax请求时，如何解释json数据
+
+使用eval parse,鉴于安全性考虑 使用parse更靠谱;
+12.事件委托是什么
+
+让利用事件冒泡的原理，让自己的所触发的事件，让他的父元素代替执行！
+13.闭包是什么，有什么特性，对页面有什么影响?简要介绍你理解的闭包
+
+闭包就是能够读取其他函数内部变量的函数。
+14.添加 删除 替换 插入到某个接点的方法
+
+obj.appendChidl()
+obj.innersetBefore
+obj.replaceChild
+obj.removeChild
+
+15..”==”和“===”的不同
+
+前者会自动转换类型，后者不会
+
+16.编写一个b继承a的方法
+
+function A(name){
+    this.name = name;
+    this.sayHello = function(){alert(this.name+” say Hello!”);};
+}
+function B(name,id){
+    this.temp = A;
+    this.temp(name);        //相当于new A();
+    delete this.temp;       
+     this.id = id;   
+    this.checkId = function(ID){alert(this.id==ID)};
+}
+
+17.如何阻止事件冒泡和默认事件
+
+function stopBubble(e)
+{
+    if (e && e.stopPropagation)
+        e.stopPropagation()
+    else
+        window.event.cancelBubble=true
+}
+return false
+
+18.下面程序执行后弹出什么样的结果?
+
+function fn() {
+    this.a = 0;
+    this.b = function() {
+        alert(this.a)
+    }
+}
+fn.prototype = {
+    b: function() {
+        this.a = 20;
+        alert(this.a);
+    },
+    c: function() {
+        this.a = 30;
+        alert(this.a);
+    }
+}
+var myfn = new fn();
+myfn.b();
+myfn.c();
+
+19.谈谈This对象的理解。
+
+this是js的一个关键字，随着函数使用场合不同，this的值会发生变化。
+但是有一个总原则，那就是this指的是调用函数的那个对象。
+this一般情况下：是全局对象Global。 作为方法调用，那么this就是指这个对象
+
+20.下面程序的结果
+
+function fun(n,o) {
+  console.log(o)
+  return {
+    fun:function(m){
+      return fun(m,n);
+    }
+  };
+}
+var a = fun(0);  a.fun(1);  a.fun(2);  a.fun(3);
+var b = fun(0).fun(1).fun(2).fun(3);
+var c = fun(0).fun(1);  c.fun(2);  c.fun(3);
+
+//答案：
+
+//a: undefined,0,0,0
+//b: undefined,0,1,2
+//c: undefined,0,1,1
+
+21.下面程序的输出结果
+
+var name = 'World!';
+(function () {
+    if (typeof name === 'undefined') {
+        var name = 'Jack';
+        console.log('Goodbye ' + name);
+    } else {
+        console.log('Hello ' + name);
+    }
+})();
+
+22.了解Node么？Node的使用场景都有哪些？
+
+高并发、聊天、实时消息推送
+23.介绍下你最常用的一款框架
+
+jquery,rn,angular等;
+24.对于前端自动化构建工具有了解吗？简单介绍一下
+
+Gulp,Grunt等；
+25.说一下什么是JavaScript的同源策略？
+
+一段脚本只能读取来自于同一来源的窗口和文档的属性，这里的同一来源指的是主机名、协议和端口号的组合
+
+
+代码相关的问题
+
+1.说说最近最流行的一些东西吧？常去哪些网站？
+
+Node.js、MVVM、React-native,Angular,Weex等
+CSDN,Segmentfault,博客园,掘金,Stackoverflow,伯乐在线等
+2.如果今年你打算熟练掌握一项新技术，那会是什么？
+
+via开发单页webapp的技术。
+SAP能够是页面与页面之间无缝连接，避免出现白页，且带有动态效果，提高用户体验。同时SAP，有JavaScript渲染页面，然后在从服务器获取小量的数据显示，如此反复，请求的数据无需要服务器处理，减少服务器负荷。
+SAP对技术要求高。要考虑首屏加载事件过长；动画效果要考虑低端手机；垃圾收集，需要自己释放资源，避免页面变卡。

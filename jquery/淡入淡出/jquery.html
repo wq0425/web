@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;}
+		#box{width: 1100px;margin:200px auto;height: 300px;}
+		.wrap{width:160px;float: left;position: relative;}
+		.wrap img{width: 100%;height: 300px;}
+		.zhao{position: absolute;left: 0;top: 0;width: 100%;height: 300px;background: rgba(0,0,0,.5);}
+		.zhao p{color:#fff;line-height: 300px;text-align: center;font-size: 50px;}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div class="wrap">
+			<img src="1.jpg" alt="">
+			<div class="zhao"><p>小白</p></div>
+		</div>
+		<div class="wrap">
+			<img src="2.jpg" alt="">
+			<div class="zhao"><p>小黄</p></div>
+		</div>
+		<div class="wrap">
+			<img src="3.jpg" alt="">
+			<div class="zhao"><p>小绿</p></div>
+		</div>
+		<div class="wrap">
+			<img src="4.jpg" alt="">
+			<div class="zhao"><p>小蓝</p></div>
+		</div>
+		<div class="wrap">
+			<img src="5.jpg" alt="">
+			<div class="zhao"><p>小粉</p></div>
+		</div>
+		<div class="wrap">
+			<img src="6.jpg" alt="">
+			<div class="zhao"><p>小棕</p></div>
+		</div>
+	</div>
+	<script src="jquery-1.8.3.min.js"></script>
+	<script>
+		$(".wrap").hover(function(){
+			$(this).children("div").stop().animate({"opacity":0},1000)
+			$(this).stop().animate({"width":"500px"},1000).siblings().stop().animate({"width":"100px"},1000)
+		},function(){
+			$(this).children("div").stop().animate({"opacity":1},1000)
+			$(".wrap").stop().animate({"width":"160px"},1000)
+		})
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<!--景点-->
+	<div class="jingdian">
+		<h2>景点多选</h2>
+		<ul class="target-city">
+			<li class="all-city" id="all">全国目的地</li>
+			<li class="current-city" id="current-city"></li>
+			<!-- <li>当地参团</li> -->
+		</ul>
+
+		<div class="content" id="content">
+			<!--全国目的地-->
+			<div class="rows" id="city-box">
+			   	<dl class="cur-show">
+					<dt>目的地：</dt>
+					<dd>
+						<p class="all">全部</p>
+		            <ul class="check-box city-box" id="city-list">
+						<li><span>北京</span></li>
+						<li><span>上海</span></li>
+						<li><span>广州</span></li>
+						<li><span>深圳</span></li>
+						<li><span>云南</span></li>
+						<li><span>拉萨</span></li>
+						<li><span>西藏</span></li>
+						<li><span>桂林</span></li>
+						<li><span>珠海</span></li>
+						<li><span>海南</span></li>
+						<li><span>青岛</span></li>
+						<li><span>大连</span></li>
+						<li><span>九寨沟</span></li>
+						<li><span>威海</span></li>
+						<li><span>烟台</span></li>
+						<li><span>西藏</span></li>
+						<li><span>桂林</span></li>
+						<li><span>珠海</span></li>
+						<li><span>海南</span></li>
+						<li><span>青岛</span></li>
+						<li><span>大连</span></li>
+						<li><span>九寨沟</span></li>
+						<li><span>威海</span></li>
+						<li><span>烟台</span></li>
+				   	</ul>
+					<p class="btns">
+						<a href="javascript:void(0)" class="done cur-btn" id="slide">更多</a>
+					</p>
+					<dd class="clearfix"></dd>
+				</dl>
+				<dl>
+					<dt>目的地：</dt>
+					<dd>
+						<p class="all">全部</p>
+						<ul class="check-box" id="check-box">
+							<li>
+								<input type="checkbox" name="citys">
+								<label>大兴</label>
+							</li>
+							<li>
+								<input type="checkbox" name="citys">
+								<label>长城</label>
+							</li>
+							<li>
+								<input type="checkbox" name="citys">
+								<label>大兴</label>
+							</li>
+							<li>
+								<input type="checkbox" name="citys">
+								<label>丽江</label>
+							</li>
+							<li>
+								<input type="checkbox" name="citys">
+								<label>丰台</label>
+							</li>
+							<li>
+								<input type="checkbox" name="citys">
+								<label>大兴</label>
+							</li>
+							<li>
+								<input type="checkbox" name="citys">
+								<label>丰台</label>
+							</li>
+							<li>
+								<input type="checkbox" name="citys">
+								<label>大兴</label>
+							</li>
+							<li>
+								<input type="checkbox" name="citys">
+								<label>东城</label>
+							</li>
+							<li>
+								<input type="checkbox" name="citys">
+								<label>西城</label>
+							</li>
+							 <li>
+								<input type="checkbox" name="citys">
+								<label>大兴</label>
+							</li>
+							<li>
+								<input type="checkbox" name="citys">
+								<label>丽江</label>
+							</li>
+							<li>
+								<input type="checkbox" name="citys">
+								<label>杭州</label>
+							</li>
+							<li>
+								<input type="checkbox" name="citys">
+								<label>长城</label>
+							</li>
+							<li>
+								<input type="checkbox" name="citys">
+								<label>大兴</label>
+							</li>
+							<li>
+								<input type="checkbox" name="citys">
+								<label>海淀</label>
+							</li>
+							<li>
+								<input type="checkbox" name="citys">
+								<label>鸟巢</label>
+							</li>
+							<li>
+								<input type="checkbox" name="citys">
+								<label>大兴</label>
+							</li>
+							<li>
+								<input type="checkbox" name="citys">
+								<label>大兴</label>
+							</li>
+							<li>
+								<input type="checkbox" name="citys">
+								<label>海淀</label>
+							</li>
+							<li>
+								<input type="checkbox" name="citys">
+								<label>鸟巢</label>
+							</li>
+							<li>
+								<input type="checkbox" name="citys">
+								<label>大兴</label>
+							</li>
+							<li class="clearfix"></li>
+						</ul>
+						<p class="btns">
+							<a href="javascript:void(0)" class="done cur-btn" id="done">确定</a>
+							<a href="javascript:void(0)" class="cancel" id="cancel">取消</a>
+						</p>
+					</dd>
+					<dd class="clearfix"></dd>
+				</dl>
+			</div>
+			<!--出发城市-->
+			<div class="rows">
+				<dl>
+					<dt>出发城市：</dt>
+					<dd>
+						<span>北京</span>
+						<span>上海</span>
+						<span>广州</span>
+						<span>深圳</span>
+					</dd>
+				</dl>
+			</div>
+			<!--出行方式-->
+			<div class="rows">
+				<dl>
+					<dt>出行方式：</dt>
+					<dd>
+						<span>自由行</span>
+						<span>跟团游</span>
+					</dd>
+				</dl>
+			</div>
+			<!--出行天数-->
+			<div class="rows">
+				<dl>
+					<dt>出行天数：</dt>
+					<dd>
+						<span>1~3天</span>
+						<span>4~7天</span>
+					</dd>
+				</dl>
+			</div>
+			<!--出发日期-->
+			<div class="rows">
+				<dl>
+					<dt>出发日期：</dt>
+					<dd>
+						<span>9月</span>
+						<span>10月</span>
+						<span>11月</span>
+						<span>12月</span>
+					</dd>
+				</dl>
+			</div>
+			<!--交通工具-->
+			<div class="rows">
+				<dl>
+					<dt>交通工具：</dt>
+					<dd>
+						<span>火车</span>
+						<span>飞机</span>
+						<span>巴士</span>
+						<span>游轮</span>
+					</dd>
+				</dl>
+			</div>
+		</div>
+		<!--用户选择-->
+		<div class="user-select-box" id="user-select-box">
+			<div class="title">您已选择：</div>
+			<div class="items">
+				<ul id="user-select-list">
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script src="jquery-1.8.3.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$("#slide").toggle(function(){
+			$(this).parent().prev().height("auto")
+		},function(){
+			$(this).parent().prev().height(25)
+		})
+
+		$(".rows").on("click","span",function(){
+			var ind = $(this).parents(".rows").index()
+			var txt = $(this).text()
+			var newSp = $("<span>"+txt+"<em></em></span>")
+			$(this).addClass("on")
+			$("#user-select-list li").eq(ind).html(newSp)
+			if( $(this).parent().is("li") ){
+				$(".cur-show").hide().next().show()
+				$("#all").next().show().text($(this).text())
+				$(this).parent().siblings().children("span").removeClass('on')
+			}
+			else{
+				$(this).siblings().removeClass('on')
+			}
+		})
+
+		
+		$(":checkbox").on("click",function(){
+			if( $(":checked").length > 5 ){
+				alert("最多五个")
+				$(this).prop("checked",false)
+			}
+		})
+
+		var arr = []
+		$("#done").on("click",function(){
+			$(this).addClass("cur-btn").next().removeClass("cur-btn")
+			$(":checked").each(function(){
+				var txt = $(this).next().text()
+				if( $.inArray(txt,arr) == -1 ){
+					arr.push(txt)
+					var newSp = $("<span>"+txt+"<em></em></span>")
+					$("#user-select-list li").eq(0).append(newSp)
+				}
+			})
+		})
+
+		$("#cancel").on("click",function(){
+			$(this).addClass("cur-btn").prev().removeClass("cur-btn")
+			$(":checked").each(function(){
+				var txt = $(this).next().text()
+				$(this).prop("checked",false)
+				arr.splice($.inArray(txt,arr),1)
+			})
+			$("#user-select-list li").eq(0).children("span:gt(0)").remove()
+		})
+
+		$("#all").on("click",function(){
+			$(this).next().hide().text("")
+			$(".cur-show").show().next().hide()
+			$(":checked").prop("checked",false)
+			$("#user-select-list li").eq(0).children("span:gt(0)").remove()
+			arr = []
+		})
+
+		$(".items").on("click","em",function(){
+			var ind = $(this).parents("li").index()
+			$(this).parent().remove()
+			$(".rows").eq(ind).find("span").removeClass("on")
+		})
+	})
+</script>

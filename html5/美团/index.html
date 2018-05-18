@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script>
+        document.documentElement.style.fontSize = window.innerWidth / 375 * 50 + 'px';
+    </script>
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="font/iconfont.css">
+
+</head>
+
+<body>
+    <!-- 日期遮罩层 -->
+    <div class="date-mark">
+        <div class="date-box">
+            <header class='date-header'>
+                <span>请选择入离日期</span>
+                <b class="suc">完成</b>
+            </header>
+            <ul class="week">
+                <li>日</li>
+                <li>一</li>
+                <li>二</li>
+                <li>三</li>
+                <li>四</li>
+                <li>五</li>
+                <li>六</li>
+            </ul>
+            <section class="date-section">
+            </section>
+        </div>
+    </div>
+
+    <!-- 全城二级子菜单 -->
+    <div class="cityAll-list">
+        <div class="city-tit">
+            <a href="javascript:;" class="iconfont close">&#xe72a;</a>
+            <h2>位置区域</h2>
+            <a></a>
+        </div>
+        <secttion class="city-section">
+            <!--渲染数据-->
+        </secttion>
+    </div>
+
+    <!-- 大盒子 -->
+    <div class="wrap">
+        <!-- 头部搜索功能区 -->
+        <header class='header'>
+            <a href="javscript:;"><i class="iconfont">&#xe6ce;</i></a>
+            <!-- 右侧功能区 -->
+            <div class="seek">
+                <div class="left">
+                    <p>住<span class="start-d"></span></p>
+                    <p>留<span class="end-d"></span></p>
+                </div>
+
+                <div class="right">
+                    <input type="text" id="txt">
+                    <label for="txt">
+                        <i class="iconfont">&#xe729;</i>位置/酒店/关键词
+                    </label>
+                </div>
+            </div>
+        </header>
+
+        <!-- 导航功能区 -->
+        <nav class="nav">
+            <ul class="n">
+                <li class='cityAll'>全城</li>
+                <li class='star'>价格/星级</li>
+                <li class='rank'>智能排序</li>
+                <li class='screen'>筛选</li>
+            </ul>
+            <!-- 筛选二级菜单 -->
+            <div class="screen-list">
+                <!-- 酒店类型  房型 品牌 -->
+                <section class="screen-section">
+                    <div class="hotel">
+                        <div class="screen-tit">
+                            酒店类型
+                        </div>
+                        <div class="screen-box">
+                            <span>公寓</span>
+                            <span>公寓</span>
+                            <span>公寓</span>
+                            <span>公寓</span>
+                            <span>公寓</span>
+                            <span>公寓</span>
+                            <span>公寓</span>
+                            <span>公寓</span>
+                            <span>公寓</span>
+                            <span>公寓</span>
+                            <span>公寓</span>
+                            <span>公寓</span>
+                            <span>公寓</span>
+                            <span>公寓</span>
+                        </div>
+                    </div>
+                    <div class="house">
+                        <div class="screen-tit">
+                            房型
+                        </div>
+                        <div class="screen-box">
+                            <span>单人房</span>
+                            <span>单人房</span>
+                            <span>单人房</span>
+                            <span>单人房</span>
+                            <span>单人房</span>
+
+                        </div>
+                    </div>
+                    <div class="brand">
+                        <div class="screen-tit">
+                            品牌
+                        </div>
+                        <div class="screen-box">
+                            <span>锦江之星</span>
+                            <span>锦江之星</span>
+                            <span>锦江之星</span>
+                            <span>锦江之星</span>
+                            <span>锦江之星</span>
+                            <span>锦江之星</span>
+                            <span>锦江之星</span>
+                            <span>锦江之星</span>
+                            <span>锦江之星</span>
+                            <span>锦江之星</span>
+                        </div>
+                    </div>
+
+
+                </section>
+
+                <div class="screen-btns">
+                    <button class='screen-reset'>重置</button>
+                    <button class='screen-color screen-fulfill'>完成</button>
+                </div>
+            </div>
+        </nav>
+        <!-- 主体内容区域 -->
+        <main class="main">
+
+            <h5><span>当前:文津国际酒店</span><i class='iconfont'>&#xe658;</i></h5>
+
+            <!-- 商品店铺展示区 -->
+            <section class="main-section">
+                
+            </section>
+        </main>
+    </div>
+</body>
+<script src='js/zipto.min.js'></script>
+<script src="js/iscroll.js"></script>
+<script src="js/date.js"></script>
+<script src="js/script.js"></script>
+
+</html>

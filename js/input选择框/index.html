@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;list-style: none;}
+		#box{width: 302px;margin:20px auto;position: relative;overflow: hidden;}
+		#ipt{width: 300px;height: 50px;border: 1px solid #666666;line-height: 50px;font-size: 20px;display: block;}
+		#spn{position: absolute;right: 10px;top: 10px;cursor: pointer;font-size: 30px;}
+		#wrap{border: 1px solid #999999;padding-bottom: 10px;display: none;}
+		h3{width: 100%;color:#000;line-height: 30px;background: #eeeeee;}
+		ul li{float: left;font-size: 16px;line-height: 25px;width: 100px;}
+		li input{margin-right: 5px;}
+		#btn{display: block;clear: both;margin-left: 10px;padding: 5px;}
+		#pos{position: absolute;left: 1px;top:5px;width: 350px;}
+		#pos p{line-height: 33px;padding: 3px;background: skyblue;float: left;margin-right: 5px;font-size: 14px;}
+		#pos b{cursor: pointer;}
+		#ca{border: 1px solid #666666;display: none}
+		#ca p{line-height: 25px;cursor: pointer;}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<input type="text" id="ipt">
+		<div id="pos"></div>
+		<span id="spn">↓</span>
+		<div id="wrap">
+			<h3>请选择好友</h3>
+			<ul id="ul"></ul>
+			<button id="btn">确定</button>
+		</div>
+		<div id="ca"></div>
+	</div>
+	<script src="data.js"></script>
+	<script>
+		//<li><input type="checkbox">啊萨达</li>
+		var spn = document.getElementById("spn");
+		var wrap = document.getElementById("wrap");
+		var ul = document.getElementById("ul")
+		var pos = document.getElementById("pos")
+		var ipt = document.getElementById("ipt")
+		var ca = document.getElementById("ca")
+		var count =0;
+
+		spn.onclick = fn;
+		function fn(){
+			ipt.value = ""
+			wrap.style.display = "block"
+			this.innerHTML = "↑"
+			ipt.disabled = true
+			var str = ''
+			for(var i=0; i<data.length; i++){
+				str += "<li><input type='checkbox'><b>"+data[i].name[0]+"</b></li>"
+			}
+			ul.innerHTML = str;
+
+			var checks = ul.getElementsByTagName("input")
+			for(var i=0; i<checks.length; i++){
+				checks[i].onclick = fn1
+				function fn1(){
+					var that = this
+					var ps = pos.getElementsByTagName("p")
+					if( this.checked ){
+						count=ps.length;
+						if( count < 4){
+							var str = ''
+							var nam = this.nextSibling.innerHTML
+							str += "<p><span>"+nam+"</span><b>&times;</b></p>"
+							pos.innerHTML = pos.innerHTML + str
+						}
+						else{
+							alert("你只能选择4个，多了不算")
+							this.checked = false
+						}
+					}
+					else{
+						var nam = that.nextSibling.innerHTML
+						var spns = pos.getElementsByTagName("span")
+						for(var i=0; i<spns.length; i++){
+							if( spns[i].innerHTML == nam ){
+								spns[i].parentNode.parentNode.removeChild(spns[i].parentNode)
+							}
+						}
+						that.onclick = fn1
+					}
+					var bs = pos.getElementsByTagName("b")
+					for(var i=0; i<bs.length; i++){
+						bs[i].onclick = function(){
+							this.parentNode.parentNode.removeChild(this.parentNode)
+							var nam = this.previousSibling.innerHTML
+							var bb = ul.getElementsByTagName("b")
+							for(var i=0; i<bb.length; i++){
+								if( bb[i].innerHTML == nam ){
+									bb[i].previousElementSibling.checked = false
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			btn.onclick = function(){
+				ul.innerHTML = ""
+				wrap.style.display = "none"
+				spn.innerHTML = "↓"
+				spn.onclick = fn;
+				ipt.disabled = false
+				var arr = []
+				var spns = pos.getElementsByTagName("span")
+				for(var i=0; i<spns.length; i++){
+					arr.push(spns[i].innerHTML)
+				}
+				alert(arr)
+				pos.innerHTML = ''
+			}
+			
+			spn.onclick = function(){
+				wrap.style.display = "none"
+				this.innerHTML = "↓"
+				ul.innerHTML = ""
+				spn.onclick = fn;
+			}
+		}
+
+		ipt.onkeyup = function(){
+			if( this.value != "" ){
+				ca.style.display = "block"
+				var val = this.value
+				var str = ''
+				for(var i=0; i<data.length; i++){
+					if( data[i].name[1].indexOf(val) != -1 || data[i].name[2].indexOf(val) != -1 || data[i].name[0].indexOf(val) != -1){
+						str += "<p>"+data[i].name[0]+"</p>"
+					}
+				}
+				ca.innerHTML = str
+				var ps = ca.getElementsByTagName("p")
+				for(var i=0; i<ps.length; i++){
+					ps[i].onclick = function(){
+						ipt.value = this.innerHTML
+						ca.innerHTML = ''
+						ca.style.display = "none"
+					}
+				}
+			}
+			else{
+				ca.innerHTML = ''
+				ca.style.display = "none"
+			}
+		}
+	</script>
+</body>
+</html>

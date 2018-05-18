@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;}
+		#box{width: 250px;margin:0 auto;}
+		select{margin-top: 50px;margin-left: 20px;width: 100px;}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<select><option>请选择</option></select>
+		<select><option>请选择</option></select>
+		<select><option>请选择</option></select>
+		<select><option>请选择</option></select>
+	</div>
+	<script src="data.js"></script>
+	<script>
+		var sls = document.getElementsByTagName("select")
+
+		for(var i=0; i<datasrc.localArea.length; i++){
+			var newO = new Option(datasrc.localArea[i].name)
+			sls[0].add(newO)
+		}
+
+		for(var i=0; i<datasrc.ObjectType.option.length; i++){
+			var newO = new Option(datasrc.ObjectType.option[i].text)
+			sls[2].add(newO)
+		}
+
+		sls[0].onchange = function(){
+			sls[1].innerHTML = "<option>请选择</option>"
+			if( this.selectedIndex != 0 ){
+				var ind = this.selectedIndex-1;
+				for(var i=0; i<datasrc.localArea[ind].option.length; i++){
+					var newO = new Option(datasrc.localArea[ind].option[i].name)
+					sls[1].add(newO)
+				}
+			}	
+		}
+		
+		sls[2].onchange = function(){
+			sls[3].innerHTML = "<option>请选择</option>"
+			if( this.selectedIndex != 0 ){
+				var ind = this.selectedIndex-1;
+				for(var i=0; i<datasrc.ObjectType.option[ind].option.length; i++){
+					var newO = new Option(datasrc.ObjectType.option[ind].option[i].text)
+					sls[3].add(newO)
+				}
+			}	
+		}
+	</script>
+</body>
+</html>

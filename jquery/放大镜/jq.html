@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;}
+		#small{width: 500px;height: 500px;border: 1px solid red;position: relative;left: 200px;top: 200px;}
+		#small img{width: 500px;height: 500px;}
+		#mark{width: 100px;height: 100px;opacity: .3;background: blue;position: absolute;cursor: pointer;z-index: 999}
+		#big{width: 500px;height: 500px;border: 1px solid red;position: relative;left: 800px;top:-300px;overflow: hidden;}
+		#big img{width: 2500px;height: 2500px;position: absolute;}
+	</style>
+</head>
+<body>
+	<div id="small">
+		<div id="mark"></div>
+		<img src="1.jpg" alt="">
+	</div>
+	<div id="big">
+		<img src="1.jpg" alt="">
+	</div>
+	<script src="jquery-1.8.3.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#mark").on("mousemove",function(e){
+				var x = e.clientX - $("#small").offset().left - $(this).width() / 2;
+				var y = e.clientY - $("#small").offset().top - $(this).height() / 2;
+				var maxW = $("#small").width() - $(this).width()
+				var maxH = $("#small").height() - $(this).height()
+				if( x < 0 )x = 0
+				if( y < 0 )y = 0
+				if( x > maxW )x = maxW 
+				if( y > maxH )y = maxH 
+				$(this).css({"left":x,"top":y})
+				$("#big img").css({"left":-x*5,"top":-y*5})
+			})
+		})
+	</script>
+</body>
+</html>

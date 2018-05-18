@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/sytle.css">
+</head>
+<body>
+    <div>
+        <canvas class="chart" id="canvas1" width="600" height="300"></canvas>
+        <canvas class="chart" id="canvas2" width="600" height="300"></canvas>
+        <canvas class="chart" id="canvas3" width="600" height="300"></canvas>
+    </div>
+    <div class="chart-circle" id="canvas4">
+        <canvas id="bgChart" width="200" height="200"></canvas>
+        <canvas id="fdChart" width="200" height="200"></canvas>
+    </div>
+
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript">
+        var nums = [20, 123, 273, 145, 198];
+        var datas = ["11.1-11.2", "11.3-11.9", "11.10-11.16", "11.17-11.23", "11.24-11.30"];
+
+        var dataGraph = {
+            x: ["1月", "2月", "3月", "4月", "5月", "6月"],
+            y: [0, 200, 400, 600, 800, 1000],
+            val: [123, 568, 987, 678, 389, 80],
+            hue: ["#6600FF", "#FF6600", "#00CCCC", "#FF66CC", "#990066", "#00CC00"]
+        };
+
+        var dataPie = {
+            val: [0.05, 0.25, 0.6, 0.1],
+            col: ["green", "blue", "#90c", "orange"],
+            txt: ["第一季度", "第二季度", "第三季度", "第四季度"]
+        };
+
+        var chartLines = new Charts('canvas1', {
+            nums: nums,
+            datas: datas,
+            lineWidth:'3'
+        });
+        var graphBars = new Charts('canvas2', {
+            datas: dataGraph,
+            lineWidth:'30'
+        });
+
+        var chartPie = new Charts('canvas3', {
+            datas: dataPie
+        });
+        var chartCircle = new Charts('canvas4',{
+            type:'circle'
+        });
+        chartLines.chartLine();
+        graphBars.graphBar();
+        chartPie.chartPie();
+        chartCircle.chartCircle();
+    </script>
+</body>
+</html>

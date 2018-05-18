@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;}
+		li{list-style: none;}
+		#box{position: relative;width: 1000px;height: 600px;margin:100px auto;overflow: hidden;}
+		#left,#right{position: absolute;cursor: pointer;z-index: 999;display: none;}
+		#left:hover,#right:hover{background: rgba(0,0,0,.5);}
+		#left{top: 47%;left: 20px;}
+		#right{top: 47%;right: 20px;}
+		#ul{width: 7000px;position: absolute;}
+		#ul li img{float: left;width: 1000px;height: 600px;}
+		#ul img{width: 1000px;height: 600px;}
+		#ol{position: absolute;bottom: 200px;left: 50%;transform: translate(-50%);width: 1000px;}
+		#ol li{float: left;width: 150px;height: 30px;background: #fff;margin-left: 15px;
+			text-align: center;line-height: 30px;font-size: 20px;cursor: pointer;color: #000;}
+		#ol li.bg{background: #000;color:#fff;}
+		#wrap{width: 1200px;height: 150px;position: relative;margin-top: 425px;margin-left: 16px;}
+		#wrap img{height: 150px;float: left;width: 162px;cursor: pointer;}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul id="ul">
+			<li><img src="1.jpg" alt=""></li>
+			<li><img src="2.jpg" alt=""></li>
+			<li><img src="3.jpg" alt=""></li>
+			<li><img src="4.jpg" alt=""></li>
+			<li><img src="5.jpg" alt=""></li>
+			<li><img src="6.jpg" alt=""></li>
+			<li><img src="1.jpg" alt=""></li>
+		</ul>
+		<ol id="ol">
+			<li class="bg">大猫</li>
+			<li>大狗</li>
+			<li>二狗</li>
+			<li>三狗</li>
+			<li>二猫</li>
+			<li>四狗</li>
+		</ol>
+		<div id="left"><img src="left.png" alt=""></div>
+		<div id="right"><img src="right.png" alt=""></div>
+		<div id="wrap">
+			<img src="1.jpg" alt="">
+			<img src="2.jpg" alt="">
+			<img src="3.jpg" alt="">
+			<img src="4.jpg" alt="">
+			<img src="5.jpg" alt="">
+			<img src="6.jpg" alt="">
+		</div>
+	</div>
+	<script src="jquery-1.8.3.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			var count = 0;
+			var num = 0;
+			var timer = null;
+			$("#right").on("click",function(){
+				count++
+				num++
+				if( count > $("#ul li").length - 1 ){
+					$("#ul").css("left","0px")
+					count = 1
+				}
+				$("#ul").stop().animate({"left":-1000*count},500)
+				if( num > $("#ol li").length - 1 ){
+					num = 0
+				}
+				$("#ol li").eq(num).addClass("bg").siblings().removeClass("bg")
+
+			})
+			$("#left").on("click",function(){
+				count--		
+				num--
+				if( count < 0 ){
+					$("#ul").css("left",-1000*($("#ul li").length - 1))
+					count = $("#ul li").length - 2
+				}
+				$("#ul").stop().animate({"left":-1000*count},500)
+				if( num < 0 ){
+					num = $("#ol li").length - 1
+				}
+				$("#ol li").eq(num).addClass("bg").siblings().removeClass("bg")
+			})
+			$("#ol li").on("click",function(){
+				var ind = $(this).index()
+				count = ind-1
+				num = ind-1
+				$("#right").click()
+
+			})
+			$("#box").hover(function(){
+				clearInterval( timer )
+				timer = null
+				$("#left").css("display","block")
+				$("#right").css("display","block")
+			},function(){
+				timer = setInterval(function(){
+					$("#right").click()
+				},600)	
+				$("#left").css("display","none")
+				$("#right").css("display","none")
+			}).trigger("mouseleave")
+			$("#wrap img").hover(function(){
+				var ind = $(this).index()
+				count = ind-1
+				num = ind-1
+				$("#right").click()
+				$(this).stop().animate({"width":"470px"},500).siblings().stop().animate({"width":"100px"},500)
+			},function(){
+				$("#wrap img").stop().animate({"width":"160px"},500)
+			})
+		})
+	</script>
+</body>
+</html>

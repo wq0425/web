@@ -1,0 +1,67 @@
+1.cnpm i redux -D
+  cnpm i react-redux -D
+2.创建一个store文件夹
+a:创建一个index.js
+  export { default }from './store.js'
+b:创建一个store.js
+  import { createStore } from 'redux'
+  import reducer from './reducers'
+  const store = createStore(reducer)
+  export default store
+c:创建一个reducers的文件夹
+d:创建一个index.js
+  import { combineReducers } from 'redux';
+  import MainData from './MainData';
+  const rootReducers = combineReducers({
+    MainData
+  });
+  export default rootReducers
+e：创建一个MainData.js
+   const initalsState = {数据}
+   const MainData = (state = initalsState, action) => {
+     return state
+   }; 
+   export default MainData
+
+
+注意:
+1.在src文件夹下边的index.js
+import  { Provider } from 'react-redux';
+
+import store from './store'
+
+ReactDOM.render( 
+   
+<Provider store={store}>
+    
+       < App / >
+    
+</Provider> , document.getElementById('root'));
+
+registerServiceWorker();
+2.在所需要渲染页面的组件的jsx里边引入
+import { connect } from 'react-redux';
+
+在HTML下边
+请求过来的数据
+const mapStateToProps = (state, ownProps) => {
+    return {
+        List: state.MainData.List
+    }
+}
+export default connect(mapStateToProps)(Main)
+
+渲染:
+{
+        List!==null && List.map((item, index) => {
+              return(
+                   <dl key={index}>
+                   <dt></dt>
+                   <dd>
+                        <p>{item.text}</p>
+                         <p>价格 {item.price}元</p>
+                    </dd>
+                </dl>
+              )
+         })
+}

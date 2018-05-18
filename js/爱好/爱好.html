@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="container">
+		 <div class="options">
+		 	<ul id="items">
+		 		<li>音乐</li>
+		 		<li>美术</li>
+		 		<li>体育</li>
+		 		<li>游戏</li>
+		 		<li>旅游</li>
+		 		<li>跑步</li>
+		 		<li>爬山</li>
+		 		<li>探险</li>
+		 	</ul>
+		 </div>
+		 <div class="button-info">
+		 	<div class="button">
+		 		<p>
+		 			<input type="text" id="aihao" placeholder="请输入需要添加的标签" >
+		 		</p>
+		 		<span id="add">添加爱好</span>
+		 	</div>
+		 	<div class="tip" id='tip'  >最多只能选择三项</div>
+		 </div>
+		 <div class="result">
+		 	<ul id="selected"></ul>
+		 </div>
+	</div>
+	<script>
+		var add = document.getElementById("add");
+		var lis = document.getElementById("items").getElementsByTagName("li");
+		var ul = document.getElementById("selected");
+		var tip = document.getElementById("tip");
+		var ipt = document.getElementById("aihao");
+		var ulli = ul.getElementsByTagName("li");
+
+		for(var i=0; i<lis.length; i++){
+			lis[i].onclick = function(){
+				var arr = [];
+				for(var j=0; j<ulli.length; j++){
+					arr.push(ulli[j].innerHTML)
+				}
+				console.log(arr)
+				if( arr.indexOf(this.innerHTML) == -1 ){
+					if( ulli.length < 3 ){
+						var newLi = this.cloneNode(true);
+						ul.appendChild(newLi)
+						for(var j=0; j<ulli.length; j++){
+							ulli[j].onclick = function(){
+								ul.removeChild(this)
+								tip.style.display = "none"
+							}
+						}
+					}
+					else{
+						tip.style.display = "block"
+					}
+				}
+			}
+		}
+
+		add.onclick = function(){
+			var val = aihao.value;
+			var arr = [];
+			for(var j=0; j<ulli.length; j++){
+				arr.push(ulli[j].innerHTML)
+			}
+			if(val!=""){
+				if( arr.indexOf(val) == -1 ){
+					if( ulli.length < 3 ){
+						var li = document.createElement("li");
+						li.innerHTML = val;
+						ul.appendChild(li)
+						aihao.value = ""
+						for(var j=0; j<ulli.length; j++){
+							ulli[j].onclick = function(){
+								ul.removeChild(this)
+								tip.style.display = "none"
+							}
+						}
+					}
+					else{
+						tip.style.display = "block"
+					}
+				}	
+			}
+			else{
+				alert("点啥玩意呢，啥都没有")
+			}
+			
+			console.log(arr)
+		}
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;}
+	</style>
+</head>
+<body>
+	<div id="box" style="width: 100px;height: 100px;background: red;cursor: pointer;position: absolute;"></div>
+	<div id="box1" style="width: 100px;height: 100px;background: yellow;cursor: pointer;position: absolute;"></div>
+	<div id="box2" style="width: 100px;height: 100px;background: green;cursor: pointer;position: absolute;"></div>
+	<div id="box3" style="width: 100px;height: 100px;background: blue;cursor: pointer;position: absolute;"></div>
+	<div id="box4" style="width: 100px;height: 100px;background: pink;cursor: pointer;position: absolute;"></div>
+	<div id="box5" style="width: 100px;height: 100px;background: skyblue;cursor: pointer;position: absolute;"></div>
+	<script>
+		 function Fn(id){
+		 	this.id = document.getElementById(id)
+		 }
+
+		 Fn.prototype.zhuai = function(){
+		 	var that = this
+		 	this.id.onmousedown = function(e){
+		 		var e = e || window.event;
+		 		var x = e.clientX - this.offsetLeft;
+		 		var y = e.clientY - this.offsetTop;
+		 		document.onmousemove = function(e){
+		 			var e = e || window.event;
+		 			var xx = e.clientX;
+		 			var yy = e.clientY;
+		 			that.id.style.left = xx - x + "px"
+		 			that.id.style.top = yy - y + "px"
+		 		}
+		 	}
+		 	this.id.onmouseup = function(){
+		 		document.onmousemove = null
+		 	}
+		 }
+
+
+
+		 var one = new Fn("box")
+		  var one1 = new Fn("box1")
+		   var one2 = new Fn("box2")
+		    var one3 = new Fn("box3")
+		     var one4 = new Fn("box4")
+		      var one5 = new Fn("box5")
+		 one1.zhuai()
+		  one2.zhuai()
+		   one3.zhuai()
+		    one4.zhuai()
+		     one5.zhuai()
+		      one.zhuai()
+	</script>
+</body>
+</html>

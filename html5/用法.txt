@@ -1,0 +1,27 @@
+zepto:
+ 1. tap —元素tap的时候触发。
+ 2. singleTap and doubleTap — 这一对事件可以用来检测元素上的单击和双击。(如果你不需要检测单击、双击，使用 tap 代替)。
+ 3. longTap — 当一个元素被按住超过750ms触发。
+ 4. swipe, swipeLeft, swipeRight, swipeUp, swipeDown — 当元素被划过时触发。(可选择给定的方向)
+
+animate:
+onInit:function(swiper){
+    swiperAnimateCache(swiper);
+    swiperAnimate(swiper);
+},
+
+onSlideChangeEnd:function(swiper){
+    swiperAnimate(swiper);
+}
+
+swiper-animate-effect 类型
+swiper-animate-duration 时间
+swiper-animate-delay 延迟时间
+
+
+new Swiper("dom名",{
+    loop:无缝  autoplay   pagination:分页器
+})
+new IScroll("dom名",{
+    scrollX   scrollY  scrollbars
+})

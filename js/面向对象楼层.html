@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;}
+		#small{position: fixed;right: 0;bottom: 0;display: none;}
+		#small p,span{width: 100px;height: 50px;background: #000;text-align: center;line-height: 50px;border: 1px solid #fff;color: #fff;cursor: pointer;display: block;text-decoration: none;
+			}
+		#one{width: 1000px;margin: 0 auto;height: 900px;background: red;color: #fff;text-align: center;font-size: 50px;line-height: 900px;}
+		#two{width: 1000px;margin: 0 auto;height: 888px;background: green;color: #fff;text-align: center;font-size: 50px;line-height: 888px;}
+		#three{width: 1000px;margin: 0 auto;height: 800px;background: blue;color: #fff;text-align: center;font-size: 50px;line-height: 777px;}
+		#four{width: 1000px;margin: 0 auto;height: 700px;background: pink;color: #fff;text-align: center;font-size: 50px;line-height: 666px;}
+		#five{width: 1000px;margin: 0 auto;height: 1111px;background: yellow;color: #fff;text-align: center;font-size: 50px;line-height: 1111px;}
+		#six{width: 1000px;margin: 0 auto;height: 1000px;background: skyblue;color: #fff;text-align: center;font-size: 50px;line-height: 1000px;}
+	</style>
+</head>
+<body>
+	<div id="small">
+		<p>1楼</p>
+		<p>2楼</p>
+		<p>3楼</p>
+		<p>4楼</p>
+		<p>5楼</p>
+		<p>6楼</p>
+		<span id="btn">顶楼↑</span>
+	</div>
+	<div class="box" id="box">
+		<div id="one">一楼</div>
+		<div id="two">二楼</div>
+		<div id="three">三楼</div>
+		<div id="four">四楼</div>
+		<div id="five">五楼</div>
+		<div id="six">六楼</div>
+	</div>
+	<script>
+		function Lou(){
+			this.ps = document.getElementsByTagName("p"),
+			this.btn = document.getElementById("btn"),
+			this.divs = document.getElementById("box").getElementsByTagName("div"),
+			this.small = document.getElementById("small");
+			this.getLou()
+			this.btndj()
+			this.scrollT()
+			this.last()
+		}
+
+		Lou.prototype = {
+			constructor:Lou,
+			getLou:function(){
+				this.arr = []
+				for(var i=0; i<this.divs.length; i++){
+					this.arr.push(this.divs[i].offsetTop);
+				}
+			},
+			btndj:function(){
+				this.btn.onclick = function(){
+					document.documentElement.scrollTop = 0;
+					document.body.scrollTop = 0;
+				}
+			},
+			scrollT:function(){
+				var that = this
+				window.onscroll = function(){
+					that.hei = document.documentElement.scrollTop || document.body.scrollTop;
+					if( that.hei > 50 ){
+						that.small.style.display = "block"
+					}
+					else{
+						that.small.style.display = "none"
+					}
+
+					for(var i=0; i<that.ps.length; i++){
+						if( that.hei > that.arr[i] -700 ){
+							for(var j=0; j<that.ps.length; j++){
+								that.ps[j].style = "background: #000;border: 1px solid #fff;color: #fff;";
+							}
+							that.ps[i].style = "background: #fff;border: 1px solid #000;color: #000;";
+						}
+					}	
+				}
+			},
+			last:function(){
+				var that = this
+				for(let i=0; i<this.ps.length; i++){
+					this.ps[i].onclick = function(){
+						document.documentElement.scrollTop = that.arr[i];
+						document.body.scrollTop = that.arr[i];
+					}
+				}
+			}
+		}
+
+
+		var one = new Lou();
+	</script>
+</body>
+</html>

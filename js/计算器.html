@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;}
+		#ipt{width: 180px;height: 50px;font-size: 20px;}
+		#but{width: 50px;height: 50px;font-size: 20px;}
+		#box button{width: 40px;height: 40px;font-size: 20px;}
+		#btn{width: 40px;height: 40px;font-size: 20px;}
+	</style>
+</head>
+<body>
+	<input type="text" id="ipt">
+	<button id="but">清空</button>
+	<div id="box">
+		<button>1</button>
+		<button>2</button>
+		<button>3</button>
+		<button>+</button><br>
+		<button>4</button>
+		<button>5</button>
+		<button>6</button>
+		<button>-</button><br>
+		<button>7</button>
+		<button>8</button>
+		<button>9</button>
+		<button>*</button><br>	
+		<button>.</button>
+		<button>0</button>
+		<input type="button" value="=" id="btn">
+		<button>/</button>	
+	</div>
+	<script>
+		var ipt = document.getElementById("ipt"),
+			btn = document.getElementById("btn"),
+			but = document.getElementById("but"),
+			box = document.getElementById("box");
+
+		box.onclick = function(e){
+			var e = e || window.event;
+			var tar = e.target || e.srcElement;
+			if( tar.nodeName == "BUTTON" ){
+				var inner = tar.innerHTML;
+				ipt.value += inner;
+			}	
+		}
+		btn.onclick = function(){
+			ipt.value = eval("("+ipt.value+")");
+		}
+		but.onclick = function(){
+			ipt.value = ""
+		}
+	</script>
+</body>
+</html>
